@@ -1,5 +1,18 @@
 
+
 <h2> <%= "#{current_user.nickname}'s Profile" %> </h2>
 
+<ul>
+		<li><%= "#{current_user.fname} #{current_user.lname}" %></li>
+		<li><%= "#{current_user.nickname}" %></li>
+		<li><%= "Status : #{current_user.status}" %></li>
+		<li><%= "Upsilon #{current_user.greek_class}" %></li>
+		<li><%= "Graduation Year : #{current_user.gradyr}" %></li>
+</ul>
 
-<p> <%= link_to "edit info", edit_user_registration_path %> </p>
+
+<ul>
+<li> <%= link_to "edit info", edit_user_registration_path %> </li>
+<li> <%= link_to "apply", new_user_app_path(current_user) %> </li>
+<li> <%= link_to "my applications", user_apps_path(current_user) %> </li>
+</ul>

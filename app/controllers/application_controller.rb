@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
 
   def configure_permitted_parameters
-  	devise_parameter_sanitizer.for(:sign_up) << [:nickname, :fname]
+  	devise_parameter_sanitizer.for(:sign_up) << [:nickname, :fname, :status]
   end
 
   def after_sign_in_path_for(resource)
@@ -18,8 +18,4 @@ class ApplicationController < ActionController::Base
   		root_path
   end
 
-  def after_update_path_for(resource)
-  		user_path(current_user)
-  end
-  # why isnt this working?
 end

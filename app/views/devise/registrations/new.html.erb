@@ -9,6 +9,10 @@
   <div><%= f.label :first_name %><br />
   <%= f.text_field :fname %></div>
 
+  <div>
+  <%= f.label :status %><br/>
+  <%= f.select(:status, [['Active'], ['Alumnus']]) %> </div>
+
   <div><%= f.label :email %><br />
   <%= f.email_field :email%></div>
 

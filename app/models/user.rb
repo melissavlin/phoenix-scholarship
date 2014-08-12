@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
   has_many :apps
 
   validates_format_of :email, :with => /@/
-  validates :nickname, :fname, :email, :password, :password_confirmation, presence: true
+  validates :nickname, :fname, :email, presence: true
 end
