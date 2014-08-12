@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  gpa: 1.5
+  current_positions_held: MyText
+  past_positions_held: MyText
+  sis_events: MyText
+  achievement: MyText
+
+two:
+  user_id: 
+  gpa: 1.5
+  current_positions_held: MyText
+  past_positions_held: MyText
+  sis_events: MyText
+  achievement: MyText
