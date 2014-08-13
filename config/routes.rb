@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :destroy] do
     resources :apps, except: [:edit, :update]
+    resources :donations, only: [:new, :create]
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

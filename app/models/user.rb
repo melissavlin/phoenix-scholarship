@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :apps
+  has_many :donations
 
   # validates_format_of :email, :with => /@/
   validates :nickname, :fname, :status, presence: true

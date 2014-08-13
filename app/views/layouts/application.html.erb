@@ -9,7 +9,7 @@
 <body>
 <header>
 	<% if user_signed_in? %>
-		<p> <%= "Hello #{current_user.nickname}" %> | <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
+		<p> <%= link_to "Hello #{current_user.nickname}", user_path(current_user) %> | <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
 	<% else %>
 		<p> <%= link_to 'sign in', new_user_session_path %> | <%= link_to 'sign up', new_user_registration_path %> </p>
 <% end %>

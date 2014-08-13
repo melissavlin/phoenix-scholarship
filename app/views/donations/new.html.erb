@@ -1,0 +1,33 @@
+<h2> Your contributions </h2>
+
+<!-- show all users' contributions -->
+<% @donation.each do |d| %>
+	<%= print_price(d.amt) %> <br/>
+<% end %>
+
+<h2>Make a contribution</h2>
+
+How much would you like to contribute to the Phoenix Scholarship fund? <br/>
+
+<!-- contribution request -->
+<%= form_for [@user, @donate], url: user_donations_path do |d| %>
+
+	<%= d.label :amount %>
+	<%= d.text_field :amt %>
+
+	<!-- once alumnus inputs an amount, enable option to be a board member -->
+	<div id="be_board_member">
+
+	Would you like to be a board member?<br/>
+
+		<%= check_box("tag", :role, {disabled: true}) %>
+		<%= label_tag(:role, "Yes") %> <br/>	
+	</div>
+
+<br/>
+	<%= d.submit :send %>
+
+<% end %> 
+<br/>
+
+<%= link_to "Back", user_path(current_user) %>
