@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :apps
 
-  validates_format_of :email, :with => /@/
-  validates :nickname, :fname, :email, presence: true
+  # validates_format_of :email, :with => /@/
+  validates :nickname, :fname, :status, presence: true
 end

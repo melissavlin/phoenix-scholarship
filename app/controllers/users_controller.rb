@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  # load_and_authorize_resource
 	# before_action :set_user, only: [:show]
 
   def index
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
-
+    @app = App.new
   end
 
   private

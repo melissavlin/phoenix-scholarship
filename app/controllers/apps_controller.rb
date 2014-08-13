@@ -6,6 +6,7 @@ class AppsController < ApplicationController
 
   def new
   	@app = App.new
+    authorize! :create, App
   end
 
   def create

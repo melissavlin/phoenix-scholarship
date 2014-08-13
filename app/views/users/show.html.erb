@@ -13,6 +13,7 @@
 
 <ul>
 <li> <%= link_to "edit info", edit_user_registration_path %> </li>
-<li> <%= link_to "apply", new_user_app_path(current_user) %> </li>
+<% if can? :create, @app %>
+<li> <%= link_to "apply", new_user_app_path(current_user) %> </li><% end %>
 <li> <%= link_to "my applications", user_apps_path(current_user) %> </li>
 </ul>

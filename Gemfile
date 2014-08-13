@@ -32,6 +32,8 @@ group :development do
 	gem 'annotate'
 	gem 'quiet_assets'
 end
+
+gem 'cancan'
 # gem 'cancan'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
