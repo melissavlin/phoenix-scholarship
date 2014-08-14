@@ -3,13 +3,15 @@ class Ability
 
   def initialize(user)
     # Give users' with "Active" status ability to create a new application
-    if user.status === "Active"
+    if user.status == "Active"
         can :create, App
     end
 
-    if user.status === "Alumnus"
+    if user.status == "Alumnus"
         can :manage, Donation
     end
+
+    can :read, :all if user.role == "Board"
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

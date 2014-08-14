@@ -1,6 +1,8 @@
-<h1>Apps#index</h1>
+<h1>Apps#show</h1>
+<p>Find me in app/views/apps/show.html.erb</p>
 
-<% @apps.each do |a| %>
+<% @all_apps.each do |a| %>
+
 	<%= "GPA : #{a.gpa}" %>
 	<%= "Current Position(s) : #{a.current_position}" %><br/>
 	<%= "Past Position(s) : #{a.past_position}" %> <br/>
@@ -9,6 +11,5 @@
 <hr>
 <% end %>
 
+
 <%= link_to "Back", user_path(current_user) %>
-
-

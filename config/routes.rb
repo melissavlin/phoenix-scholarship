@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'users#index'
 
+  get 'apps/review' => 'apps#review' 
+  
   resources :users, only: [:show, :destroy] do
     resources :apps, except: [:edit, :update]
     resources :donations, only: [:new, :create]

@@ -5,7 +5,13 @@
 <ul>
 		<li><%= "#{current_user.fname} #{current_user.lname}" %></li>
 		<li><%= "#{current_user.nickname}" %></li>
-		<li><%= "Status : #{current_user.status}" %></li>
+		<li><%= "Status : #{current_user.status}" %>
+
+			<% if can? :read, @all_apps %>
+			<%= " and Boardmember" %>
+			<% end %>
+
+		</li>
 		<li><%= "Upsilon #{current_user.greek_class}" %></li>
 		<li><%= "Graduation Year : #{current_user.gradyr}" %></li>
 </ul>
@@ -22,5 +28,12 @@
 		<li> <%= link_to "apply", new_user_app_path(current_user) %> </li>
 	<% end %>
 
-	<li> <%= link_to "my applications", user_apps_path(current_user) %> </li>
+
+		<li> <%= link_to "my applications", user_apps_path(current_user) %> </li>
+
+
+	<% if can? :read, @all_apps %>
+		<li> <%= link_to "read applications", apps_review_path %> </li>
+	<% end %>
+
 </ul>

@@ -22,7 +22,13 @@ class AppsController < ApplicationController
   	end
   end
 
+  def review
+    @all_apps = App.all
+    authorize! :read, App.all
+  end
+
   def show
+
   end
 
 
