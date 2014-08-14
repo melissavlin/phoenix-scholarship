@@ -1,7 +1,7 @@
-
+<br/>
 
 <h2> <%= "#{current_user.nickname}'s Profile" %> </h2>
-
+<br/>
 <ul>
 		<li><%= "#{current_user.fname} #{current_user.lname}" %></li>
 		<li><%= "#{current_user.nickname}" %></li>
@@ -16,9 +16,11 @@
 		<li><%= "Graduation Year : #{current_user.gradyr}" %></li>
 </ul>
 
-
+<br/>
 <ul>
 	<li> <%= link_to "edit info", edit_user_registration_path %> </li>
+
+	<li> <%= link_to "all users", users_roster_path %> </li>
 
 	<% if can? :manage, @donate %>	
 		<li> <%= link_to "your contributions", new_user_donation_path(current_user) %> </li>
@@ -37,3 +39,5 @@
 	<% end %>
 
 </ul>
+
+

@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def new
+
   end
 
   def edit
@@ -17,6 +18,11 @@ class UsersController < ApplicationController
     @app = App.new
     @all_apps = App.all
     @donate = Donation.new
+  end
+
+  def roster
+    @users = User.all
+
   end
 
   private

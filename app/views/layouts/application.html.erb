@@ -4,19 +4,19 @@
   <title>Project Phoenix</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link href='http://fonts.googleapis.com/css?family=Playfair+Display:700italic|Open+Sans:800|Gentium+Book+Basic:700italic,400' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <header>
 	<% if user_signed_in? %>
 		<p> <%= link_to "Hello #{current_user.nickname}", user_path(current_user) %> | <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
-	<% else %>
-		<p> <%= link_to 'sign in', new_user_session_path %> | <%= link_to 'sign up', new_user_registration_path %> </p>
 <% end %>
 </header>
 
        <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
+
 <%= yield %>
 
 </body>

@@ -1,5 +1,5 @@
-<h1>Apps#show</h1>
-<p>Find me in app/views/apps/show.html.erb</p>
+
+<br/>
 
 <% @all_apps.each do |a| %>
 
@@ -8,6 +8,15 @@
 	<%= "Past Position(s) : #{a.past_position}" %> <br/>
 	<%= "Sister Events Attended : #{a.sis_events}" %> <br/>
 	<%= "Proudest Achievement : #{a.achievement}" %>
+		<br/>
+
+	<!-- vote button, when clicked will change board's has_voted? to true and increase applications vote count -->
+	<!-- attach application id to vote -->
+
+	<%= form_tag(castvote_path, method: "post") do %>
+			<%= hidden_field_tag(:app_id, a.id) %>
+			<%= submit_tag ("Cast Vote")%>
+	<% end %>
 <hr>
 <% end %>
 

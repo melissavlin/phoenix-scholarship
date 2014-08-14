@@ -27,6 +27,21 @@ class AppsController < ApplicationController
     authorize! :read, App.all
   end
 
+  def castvote
+    # get current users id, change has_voted? to true
+    @user = User.find(current_user.id)
+    if @user
+      @user.update(has_voted: true)
+      # get the app ID of the clicked vote
+      app = App.find(params[:app_id])
+      # increase vote count by 1
+      app.increment!(:vote_count)
+      redirect_to apps_review_path, notice: "Awesome, your vote has been cast!"
+    else
+      redirect_to apps_review_path, alert: "Uh oh, there was an error with your vote."
+    end
+  end
+
   def show
 
   end

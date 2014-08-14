@@ -1,17 +1,26 @@
-<h2>Sign in</h2>
+<div id="kpl_wrapper">
+	<h1 id="kpl_main">KPL</h1>
+	<p id="subline">upsilon chapter's</p>
+	<p id="subline2">phoenix scholarship</p>
+</div>
+
+<div id ="sign_in_form">
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
+  <div class=""><%= f.label :email %>
   <%= f.email_field :email, autofocus: true %></div>
 
-  <div><%= f.label :password %><br />
+  <div><%= f.label :password %>
     <%= f.password_field :password, autocomplete: "off" %></div>
 
   <% if devise_mapping.rememberable? -%>
     <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
   <% end -%>
 
-  <div><%= f.submit "Sign in" %></div>
+  <div><%= f.submit "Enter", {:id => 'submit_button'}%></div>
 <% end %>
 
+</div>
+<div id="sign_in_links">
 <%= render "devise/shared/links" %>
+</div>

@@ -1,0 +1,17 @@
+<br/>
+<ul>
+
+<% @users.each do |s| %>
+
+	<li><%= "#{s.fname} #{s.lname}" %></li>
+	<li><%= "#{s.nickname}" %></li>
+	<li><%= "Status : #{s.status}" %></li>
+	<li><%= "Upsilon #{s.greek_class}" %></li>
+	<li><%= "Graduation Year : #{s.gradyr}" %></li>
+
+<hr/>
+<!-- if user.role == chair, she has the option to transfer role of chairwoman to another user  -->
+
+<% end %>
+
+</ul>
