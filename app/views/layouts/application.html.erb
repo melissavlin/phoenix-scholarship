@@ -4,14 +4,23 @@
   <title>Project Phoenix</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <link href='http://fonts.googleapis.com/css?family=Playfair+Display:700italic|Open+Sans:800|Gentium+Book+Basic:700italic,400' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Playfair+Display:700italic|Open+Sans:400,800|Gentium+Book+Basic:700italic,400' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <header>
-	<% if user_signed_in? %>
-		<p> <%= link_to "Hello #{current_user.nickname}", user_path(current_user) %> | <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
+
+<% if user_signed_in? %>
+<div id="kpl_header_wrapper">
+	<div id="kpl_header">
+		
+		KPL Phoenix Scholarship
+
+	</div>
+		<p id="header_subline"> <%= link_to "Hello #{current_user.nickname}", user_path(current_user) %> / <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
+</div>
 <% end %>
+
 </header>
 
        <p class="notice"><%= notice %></p>

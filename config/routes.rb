@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   root 'users#index'
 
   get 'users/roster' => 'users#roster'
-
   post 'castvote' => 'apps#castvote'
-
+  post 'getawardee' => 'users#getawardee'
+  
   get 'apps/review' => 'apps#review' 
   
   resources :users, only: [:show, :destroy] do

@@ -1,0 +1,88 @@
+$redcolor: #CE0000;
+$standardfont: 'Open Sans', Arial, sans-serif;
+
+@media all {
+
+// landing page styling
+@import 'landing';
+
+
+a {
+	text-decoration: none;
+	color: $redcolor;
+}
+// main header (after sign in)
+
+#kpl_header_wrapper {
+	#kpl_header {
+		width:100%;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		font-family: $standardfont;
+		font-size: 5em;
+		font-weight: 800;
+		text-align: center;
+			@media (max-width: 600px) {
+				font-size: 4em;
+				text-align: left;
+			}
+
+	}
+
+		#header_subline{
+			font-family: $standardfont;
+			font-size: 1em;
+			position: relative;
+			text-align: right;
+			right: 120px;
+			@media (max-width: 600px) {
+				text-align: left;
+				right: 0px;
+			}
+
+		}
+
+	}
+
+// user's home page
+#homepage {
+	margin-top: 50px;
+
+	.infobox {
+		font-family: $standardfont;
+		width: 260px;
+		height: 350px;
+		float: left;
+		margin-left: 25px;
+		padding: 35px;
+		border: 1px solid black;
+	}
+
+}
+#random {
+	display:none;
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

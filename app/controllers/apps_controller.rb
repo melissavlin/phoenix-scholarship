@@ -25,9 +25,11 @@ class AppsController < ApplicationController
   def review
     @all_apps = App.all
     authorize! :read, App.all
+
   end
 
   def castvote
+    authorize! :castvote, App.all
     # get current users id, change has_voted? to true
     @user = User.find(current_user.id)
     if @user
@@ -38,7 +40,7 @@ class AppsController < ApplicationController
       app.increment!(:vote_count)
       redirect_to apps_review_path, notice: "Awesome, your vote has been cast!"
     else
-      redirect_to apps_review_path, alert: "Uh oh, there was an error with your vote."
+      redirect_to apps_review_path, alert: "Uh oh, there was an problem getting your vote."
     end
   end
 

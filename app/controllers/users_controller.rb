@@ -18,6 +18,15 @@ class UsersController < ApplicationController
     @app = App.new
     @all_apps = App.all
     @donate = Donation.new
+
+    app_winner = App.order("vote_count").reverse_order.first
+    @awardee = app_winner.user
+  end
+
+  def getawardee
+        app_winner = App.order("vote_count").reverse_order.first
+    @awardee = app_winner.user
+    redirect_to user_path(current_user)
   end
 
   def roster

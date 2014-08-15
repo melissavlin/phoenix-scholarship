@@ -9,6 +9,15 @@
   <div><%= f.label :first_name %><br />
   <%= f.text_field :fname %></div>
 
+  <div><%= f.label :last_name %><br />
+  <%= f.text_field :lname %></div>
+
+  <div><%= f.label :greek_class %><br />
+  <%= f.select(:greek_class, [['Alpha'], ['Beta'], ['Gamma'], ['Delta'], ['Epsilon'], ['Zeta'], ['Eta'], ['Theta'], ['Iota'], ['Lambda'], ['Mu'], ['Nu']]) %></div>
+
+  <div><%= f.label :crossing_season %><br />
+  <%= f.text_field :xseason, placeholder: "ex: Spring 08" %></div>
+
   <div>
   <%= f.label :status %><br/>
   <%= f.select(:status, [['Active'], ['Alumnus']]) %> </div>

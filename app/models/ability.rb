@@ -12,6 +12,8 @@ class Ability
     end
 
     can :read, :all if user.role == "Board"
+
+    can :castvote, App if user.has_voted == false
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

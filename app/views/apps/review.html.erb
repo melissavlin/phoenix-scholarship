@@ -1,6 +1,6 @@
 
-<br/>
 
+<br/>
 <% @all_apps.each do |a| %>
 
 	<%= "GPA : #{a.gpa}" %>
@@ -10,13 +10,20 @@
 	<%= "Proudest Achievement : #{a.achievement}" %>
 		<br/>
 
-	<!-- vote button, when clicked will change board's has_voted? to true and increase applications vote count -->
-	<!-- attach application id to vote -->
+	<!-- if user has not voted yet, she will be able to see the vote button -->
 
-	<%= form_tag(castvote_path, method: "post") do %>
-			<%= hidden_field_tag(:app_id, a.id) %>
-			<%= submit_tag ("Cast Vote")%>
+	<% if can? :castvote, @all_apps %>
+		<%= form_tag(castvote_path, method: "post") do %>
+				<%= hidden_field_tag(:app_id, a.id) %>
+				<%= submit_tag ("Cast Vote")%>
+		<% end %>
 	<% end %>
+
+	<br/>
+	<% if cannot? :castvote, @all_apps %>
+		<%= button_tag "Voted", disabled: true %>
+	<% end %>
+
 <hr>
 <% end %>
 

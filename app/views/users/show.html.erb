@@ -1,43 +1,67 @@
-<br/>
+<div id="homepage">
 
-<h2> <%= "#{current_user.nickname}'s Profile" %> </h2>
-<br/>
-<ul>
-		<li><%= "#{current_user.fname} #{current_user.lname}" %></li>
-		<li><%= "#{current_user.nickname}" %></li>
-		<li><%= "Status : #{current_user.status}" %>
+<div id="userbox" class="infobox">
 
-			<% if can? :read, @all_apps %>
-			<%= " and Boardmember" %>
-			<% end %>
+	<ul>
+			<li><%= "#{current_user.fname} #{current_user.lname}" %></li>
+			<li><%= "#{current_user.nickname}" %></li>
+			<li><%= "Status : #{current_user.status}" %>
 
-		</li>
-		<li><%= "Upsilon #{current_user.greek_class}" %></li>
-		<li><%= "Graduation Year : #{current_user.gradyr}" %></li>
-</ul>
+				<% if can? :read, @all_apps %>
+				<%= " and Boardmember" %>
+				<% end %>
 
-<br/>
-<ul>
-	<li> <%= link_to "edit info", edit_user_registration_path %> </li>
+			</li>
+			<li><%= "Upsilon #{current_user.greek_class}" %></li>
+			<li><%= "Graduation Year : #{current_user.gradyr}" %></li>
+	</ul>
 
-	<li> <%= link_to "all users", users_roster_path %> </li>
-
-	<% if can? :manage, @donate %>	
-		<li> <%= link_to "your contributions", new_user_donation_path(current_user) %> </li>
-	<% end %>
-
-	<% if can? :create, @app %>
-		<li> <%= link_to "apply", new_user_app_path(current_user) %> </li>
-	<% end %>
+</div>
 
 
-		<li> <%= link_to "my applications", user_apps_path(current_user) %> </li>
+<!-- SHOW NEWS (EX: RECIPIENT, DEADLINES, ETC) -->
+<div id="newsbox" class="infobox">
+		NEW NEWS
+</div>
 
 
-	<% if can? :read, @all_apps %>
-		<li> <%= link_to "read applications", apps_review_path %> </li>
-	<% end %>
 
-</ul>
+<div id="linkbox" class="infobox">
+	<ul>
+		<li> <%= link_to "edit info", edit_user_registration_path %> </li>
+
+		<li> <%= link_to "all users", users_roster_path %> </li>
+
+		<% if can? :manage, @donate %>	
+			<li> <%= link_to "your contributions", new_user_donation_path(current_user) %> </li>
+		<% end %>
+
+		<% if can? :create, @app %>
+			<li> <%= link_to "apply", new_user_app_path(current_user) %> </li>
+		<% end %>
+
+
+			<li> <%= link_to "my applications", user_apps_path(current_user) %> </li>
+
+
+		<% if can? :read, @all_apps %>
+			<li> <%= link_to "read applications", apps_review_path %> </li>
+		<% end %>
+
+	</ul>
+</div>
+
+
+</div>
+<!-- if user.role = chair and if the set voting deadline has past or if all board members have voted , enable button to get app.user with most votes -->
+<div id="random">
+		<%= form_tag(getawardee_path, method: "post") do %>
+				<%= submit_tag ("Get Award Winner!"), id: "award_button" %>
+		<% end %>
+
+		<div id="awardee_name">
+			<%= @awardee.nickname %>
+		</div>
+</div>
 
 
