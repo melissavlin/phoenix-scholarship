@@ -48,6 +48,10 @@
 			<li> <%= link_to "read applications", apps_review_path %> </li>
 		<% end %>
 
+		<% if can? :manage, :chair %>
+		<li> <%= link_to "manage contributions", users_chair_path %> </li>
+		<% end %>
+
 	</ul>
 </div>
 

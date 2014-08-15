@@ -1,0 +1,29 @@
+<br/>
+<table>
+	<tr>
+		<td> Contributer </td>
+		<td> Amount </td>
+		<td> Status </td>
+	</tr>
+
+	<% @donations.each do |d| %>
+		<% if d.paid == false %>
+		<tr>
+			<td> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </td>
+			<td> <%= print_price(d.amt) %> </td>
+			<td> 
+			<%= form_tag(receive_donation_path, method: "post") do %>
+				<%= hidden_field_tag(:donation_id, d.id) %>
+				<%= submit_tag ("Not yet received") %>
+			<% end %>
+			</td>
+		</tr>
+		<% else %>
+		<tr class="paid">
+			<td> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </td>
+			<td> <%= print_price(d.amt) %> </td>
+			<td> <%= button_tag "&check; Received".html_safe, disabled: true %> </td>
+		</tr>
+		<% end %>
+	<% end %>
+</table>

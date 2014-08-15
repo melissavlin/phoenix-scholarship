@@ -6,6 +6,11 @@ $standardfont: 'Open Sans', Arial, sans-serif;
 // landing page styling
 @import 'landing';
 
+.paid {
+	opacity: .4;
+	// color: #aaa;
+	// font-style: italic;
+}
 
 a {
 	text-decoration: none;

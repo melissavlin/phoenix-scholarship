@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814160316) do
+ActiveRecord::Schema.define(version: 20140815141959) do
 
   create_table "apps", force: true do |t|
     t.integer  "user_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20140814160316) do
     t.decimal  "amt",         precision: 6, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "paid",                                default: false
   end
 
   add_index "donations", ["semester_id"], name: "index_donations_on_semester_id"

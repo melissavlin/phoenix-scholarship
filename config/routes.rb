@@ -9,10 +9,12 @@ Rails.application.routes.draw do
   root 'users#index'
 
   get 'users/roster' => 'users#roster'
+  get 'apps/review' => 'apps#review' 
+  get 'users/chair' => 'users#chair'
+
   post 'castvote' => 'apps#castvote'
   post 'getawardee' => 'users#getawardee'
-  
-  get 'apps/review' => 'apps#review' 
+  post 'receive_donation' => 'users#receive_donation'
   
   resources :users, only: [:show, :destroy] do
     resources :apps, except: [:edit, :update]
