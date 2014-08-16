@@ -61,7 +61,16 @@ a {
 		margin-left: 25px;
 		padding: 35px;
 		border: 1px solid black;
+		.cornered {
+			position: relative;
+			top: -20px;
+		   width: 260px;
+		   height: 350px;
+		   border-bottom: 40px solid red;
+		   border-left: 40px solid transparent;
+		}
 	}
+
 
 }
 #random {

@@ -11,11 +11,14 @@ Rails.application.routes.draw do
   get 'users/roster' => 'users#roster'
   get 'apps/review' => 'apps#review' 
   get 'users/chair' => 'users#chair'
+  get 'apps/archive' => "apps#archive"
 
   post 'castvote' => 'apps#castvote'
   post 'getawardee' => 'users#getawardee'
   post 'receive_donation' => 'users#receive_donation'
-  
+  post 'start_new_semester' => 'users#start_new_semester'
+  post 'set_deadline' => 'users#set_deadline'
+
   resources :users, only: [:show, :destroy] do
     resources :apps, except: [:edit, :update]
     resources :donations, only: [:new, :create]

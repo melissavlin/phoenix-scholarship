@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815141959) do
+ActiveRecord::Schema.define(version: 20140815213928) do
 
   create_table "apps", force: true do |t|
     t.integer  "user_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140815141959) do
     t.integer  "vote_count"
     t.string   "semester"
     t.boolean  "award"
+    t.boolean  "open",             default: true
   end
 
   add_index "apps", ["user_id"], name: "index_apps_on_user_id"
@@ -42,7 +43,10 @@ ActiveRecord::Schema.define(version: 20140815141959) do
   add_index "donations", ["user_id"], name: "index_donations_on_user_id"
 
   create_table "semesters", force: true do |t|
-    t.string   "season"
+    t.date     "year"
+    t.integer  "season"
+    t.date     "app_deadline"
+    t.date     "vote_deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

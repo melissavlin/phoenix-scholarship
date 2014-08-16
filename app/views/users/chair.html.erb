@@ -1,4 +1,25 @@
+<%= form_for @semester, url: set_deadline_path, method: "post") do %>
+	<p>Set Application Deadline: </p> <br/>
+		<%= date_select :app, :app_deadline %>
+	<br/>	
+	<p>Set voting deadline: </p> <br/>
+		<%= date_select :app, :vote_deadline %>
+
+		<%= submit_tag ("Set Deadlines") %>
+<% end %>
+
+
 <br/>
+<!-- RESET BUTTON (sets: all apps with status:opened to closed,  users with role:board set back to nil, and has_voted to false) -->
+<p> To start a new semester, please click the below button. Note that this also means your committee board will be empty until Alumnaes donate again. </p>
+	<%= form_tag(start_new_semester_path, method: "post") do %>
+			<%= submit_tag ("start new semester"), id: "new_semester_button" %>
+	<% end %>
+
+
+<br/>
+
+<!-- DONATION MANAGEMENT -->
 <table>
 	<tr>
 		<td> Contributer </td>
@@ -27,3 +48,6 @@
 		<% end %>
 	<% end %>
 </table>
+
+
+<%= link_to "Back", root_path %>

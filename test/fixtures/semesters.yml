@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  season: MyString
+  app_deadline: 2014-08-15
+  vote_deadline: 2014-08-15
+  app_id: 
+
+two:
+  season: MyString
+  app_deadline: 2014-08-15
+  vote_deadline: 2014-08-15
+  app_id: 

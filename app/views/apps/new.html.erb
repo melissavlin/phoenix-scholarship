@@ -1,4 +1,4 @@
-<h2> Application </h2>
+<h2> Application for <%= "#{@app.semester}" %> </h2>
 <%= form_for [@user, @app], url: user_apps_path do |f| %>
 	<%= f.label :gpa %>
 	<%= f.text_field :gpa %> <br/>
@@ -14,4 +14,4 @@
 	<%= f.submit :apply %>
 <% end %> 
 
-<%= link_to "Back", :back %>
+<%= link_to "Back", root_path %>

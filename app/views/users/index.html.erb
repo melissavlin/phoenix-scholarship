@@ -1,3 +1,72 @@
-<h2> Hello. USER index page </h2>
-<%= link_to "users page", user_path(current_user) %> 
-<!-- possibly show list of all users that have an account, sorted by greek class and show mini profile: with fname, lname, nickname, upsilon [class]  -->
+<div id="homepage">
+
+<div id="userbox" class="infobox">
+
+	<ul>
+			<li><%= "#{current_user.fname} #{current_user.lname}" %></li>
+			<li><%= "#{current_user.nickname}" %></li>
+			<li><%= "Status : #{current_user.status}" %>
+
+				<% if can? :read, @all_apps %>
+				<%= " and Boardmember" %>
+				<% end %>
+
+			</li>
+			<li><%= "Upsilon #{current_user.greek_class}" %></li>
+			<li><%= "Graduation Year : #{current_user.gradyr}" %></li>
+	</ul>
+
+</div>
+
+
+<!-- SHOW NEWS (EX: RECIPIENT, DEADLINES, ETC) -->
+<div id="newsbox" class="infobox">
+		NEW NEWS
+</div>
+
+
+
+<div id="linkbox" class="infobox">
+	<ul>
+		<li> <%= link_to "edit info", edit_user_registration_path %> </li>
+
+		<li> <%= link_to "all users", users_roster_path %> </li>
+
+		<% if can? :manage, @donate %>	
+			<li> <%= link_to "your contributions", new_user_donation_path(current_user) %> </li>
+		<% end %>
+
+		<% if can? :create, @app %>
+			<li> <%= link_to "apply", new_user_app_path(current_user) %> </li>
+		<% end %>
+
+
+			<li> <%= link_to "my applications", user_apps_path(current_user) %> </li>
+
+
+		<% if can? :read, @all_apps %>
+			<li> <%= link_to "read applications", apps_review_path %> </li>
+		<% end %>
+
+		<% if can? :manage, :chair %>
+		<li> <%= link_to "manage contributions", users_chair_path %> </li>
+		<li> <%= link_to "application archive", apps_archive_path %> </li>
+		<% end %>
+
+	</ul>
+</div>
+
+
+</div>
+<!-- if user.role = chair and if the set voting deadline has past or if all board members have voted , enable button to get app.user with most votes -->
+<div id="random">
+		<%= form_tag(getawardee_path, method: "post") do %>
+				<%= submit_tag ("Get Award Winner!"), id: "award_button" %>
+		<% end %>
+
+		<div id="awardee_name">
+			<%= @awardee.nickname %>
+		</div>
+</div>
+
+

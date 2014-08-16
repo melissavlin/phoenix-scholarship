@@ -17,7 +17,7 @@
 		KPL Phoenix Scholarship
 
 	</div>
-		<p id="header_subline"> <%= link_to "Hello #{current_user.nickname}", user_path(current_user) %> / <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
+		<p id="header_subline"> <%= link_to "Hello #{current_user.nickname}", root_path %> / <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
 </div>
 <% end %>
 

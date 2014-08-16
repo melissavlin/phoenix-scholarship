@@ -5,17 +5,47 @@ class AppsController < ApplicationController
   	@apps = current_user.apps
   end
 
+# past applications
+  def archive
+    authorize! :manage, :chair
+    @archive = App.where(open: false)
+  end
+
   def new
   	@app = App.new
+    # @hello = "Hello!"
     authorize! :create, App
+    @app.semester
+      month = Date.today.month
+      year = Date.today.year
+      if month >= 8
+        @app.semester = "Fall #{year}"
+      elsif month <=4
+        @app.semester = "Spring #{year}"
+      end
   end
 
   def create
   	@user = User.find(current_user.id)
   	# @app.user = User.find(params[:user_id])
   	@app = App.new(app_params)
+    if @app
+      @app.semester
+      # assign semester to application by checking the date of submission 
+      # Fall = between months of Sept (9) - Dec (12)
+      # Spring = btwn months Jan (1) - April (4)
+      month = Date.today.month
+      year = Date.today.year
+      if month >= 8
+        @app.semester = "Fall #{year}"
+      elsif month <=4
+        @app.semester = "Spring #{year}"
+      end
+    end      
+
   	@app.user = User.find(current_user.id)
-  	if @app.save
+  	
+    if @app.save
   		redirect_to user_apps_path(current_user), notice: "App submitted"
   	else
   		render :new
@@ -23,7 +53,7 @@ class AppsController < ApplicationController
   end
 
   def review
-    @all_apps = App.all
+    @all_apps = App.where(open: true)
     authorize! :read, App.all
 
   end
