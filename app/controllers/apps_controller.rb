@@ -75,7 +75,8 @@ class AppsController < ApplicationController
   end
 
   def show
-
+    @user = User.find(params[:user_id])
+    @apps = @user.apps
   end
 
 

@@ -7,11 +7,12 @@
 	<%= "Current Position(s) : #{a.current_position}" %><br/>
 	<%= "Past Position(s) : #{a.past_position}" %> <br/>
 	<%= "Sister Events Attended : #{a.sis_events}" %> <br/>
-	<%= "Proudest Achievement : #{a.achievement}" %>
+	<%= "Proudest Achievement : #{a.achievement}" %><br/>
 
+	<%= link_to "view app", user_app_path(current_user, a) %>
 <hr>
 <% end %>
 
-<%= link_to "Back", root_path %>
+
 
 
