@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   post 'start_new_semester' => 'users#start_new_semester'
   post 'set_deadline' => 'users#set_deadline'
 
-  resources :users, only: [:show, :destroy] do
+  resources :users, only: [:create, :show, :destroy] do
     resources :apps, except: [:edit, :update]
     resources :donations, only: [:new, :create]
   end

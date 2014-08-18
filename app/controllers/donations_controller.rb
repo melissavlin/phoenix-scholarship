@@ -4,7 +4,6 @@ class DonationsController < ApplicationController
 
   def new
   	@donate = Donation.new
-  	@donation = current_user.donations
   	authorize! :manage, Donation
   end
 

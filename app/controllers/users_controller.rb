@@ -11,13 +11,22 @@ class UsersController < ApplicationController
     @donate = Donation.new
     app_winner = App.order("vote_count").reverse_order.first
     @awardee = app_winner.user
+    # hide board member question if current user is a board member
   end
 
-  def new
-
-  end
-
-  def edit
+  def create
+   @user = User.find(current_user.id)
+   @donate = Donation.new(donate_params)
+   @donate.user = User.find(current_user.id)
+    if @donate.save
+      # if user checks yes, change users' role to "Board"
+      if params[:tag][:role] == "1"
+        @donate.user.update(role: "Board")
+      end
+      redirect_to root_path, notice: "Thank you for your contribution!"
+    else 
+      redirect_to root_path, alert: "There was an issue getting your contribution. Please try again."
+    end
   end
 
   def roster

@@ -4,4 +4,7 @@ module ApplicationHelper
 		number_to_currency price
 	end
 	
+	def print_date(datetime)
+  		datetime.strftime("%m/%d/%Y")
+   end
 end

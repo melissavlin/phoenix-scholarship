@@ -1,6 +1,7 @@
 $redcolor: #CE0000;
 $standardfont: 'Open Sans', Arial, sans-serif;
 #landing_page {
+	margin-bottom: -20px;
 	background-color: $redcolor;
 
 	a{
@@ -16,7 +17,7 @@ $standardfont: 'Open Sans', Arial, sans-serif;
 
 		width: 100%;
 		padding-top: 30px;
-		padding-bottom: 30px;
+		padding-bottom: 60px;
 		text-align: center;
 
 		h1 {

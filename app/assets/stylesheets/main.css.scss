@@ -1,9 +1,62 @@
 $redcolor: #CE0000;
 $standardfont: 'Open Sans', Arial, sans-serif;
 
-@media all {
 
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0 auto;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-family: $standardfont;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 // landing page styling
+
+html{
+	margin-bottom: 20px;
+}
+
 @import 'landing';
 
 .paid {
@@ -30,6 +83,7 @@ a {
 			@media (max-width: 600px) {
 				font-size: 4em;
 				text-align: left;
+				margin-left: 5px;
 			}
 
 	}
@@ -42,7 +96,7 @@ a {
 			right: 120px;
 			@media (max-width: 600px) {
 				text-align: left;
-				right: 0px;
+				right: -5px;
 			}
 
 		}
@@ -52,6 +106,7 @@ a {
 // user's home page
 #homepage {
 	margin-top: 50px;
+	margin-bottom: 30px;
 
 	.infobox {
 		font-family: $standardfont;
@@ -61,14 +116,21 @@ a {
 		margin-left: 25px;
 		padding: 35px;
 		border: 1px solid black;
-		.cornered {
-			position: relative;
-			top: -20px;
-		   width: 260px;
-		   height: 350px;
-		   border-bottom: 40px solid red;
-		   border-left: 40px solid transparent;
+		@media (max-width: 1075px){
+			// width: 200px;
 		}
+		@media (max-width: 600px) {
+			margin-left: 10px;
+			width: 500px;
+		}
+		// .cornered {
+		// 	position: relative;
+		// 	top: -20px;
+		//    width: 260px;
+		//    height: 350px;
+		//    border-bottom: 40px solid red;
+		//    border-left: 40px solid transparent;
+		// }
 	}
 
 
@@ -77,9 +139,71 @@ a {
 	display:none;
 }
 
+// APPLICATION FORM STYLING
+#application_form {
+	font-size: .8em;
 
-
+	@media (max-width: 600px){
+		margin-left: 5px;
+	}
+	#input_num {
+		width: 50px;
+	}
+	input {
+		padding: 5px;
+		width: 200%;
+		border: 1px solid black;
+		&:focus {
+			border:1px solid $redcolor;
+			outline: none;
+		}
+		@media (max-width: 630px) {
+			width: 150%;
+		}
+	}
+	tr {
+		height: 40px;
+	}
+	td {
+		width: 200px;
+	}
+	.app_section_title {
+		width: 100%;
+		height: 15px;
+		padding: 5px;
+		font-size: 1.2em;
+		font-weight: bold;
+		color: #333;
+		letter-spacing: 2px;
+		background-color: #ccc;
+		text-transform: uppercase;
+	}
+	.for_textarea {
+		height: 18px;
+	}
+	textarea {
+		padding: 5px;
+		margin-bottom: 8px;
+		width: 100%;
+		height: 40px;
+		border: 1px solid black;
+		&:focus {
+			border:1px solid $redcolor;
+			outline: none;
+		}
+	}
+	#apply_button {
+		width: 80px;
+		border: 1px solid black;
+		background-color: $redcolor;
+		color: white;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
 }
+
+
+
 
 
 

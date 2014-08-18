@@ -15,6 +15,8 @@
 			<li><%= "Upsilon #{current_user.greek_class}" %></li>
 			<li><%= "Graduation Year : #{current_user.gradyr}" %></li>
 	</ul>
+	 
+	<%= link_to "your account", edit_user_registration_path %> 
 
 </div>
 
@@ -22,30 +24,55 @@
 <!-- SHOW NEWS (EX: RECIPIENT, DEADLINES, ETC) -->
 <div id="newsbox" class="infobox">
 		NEW NEWS
+
+		<!-- if current user has donated, show thank you note -->
+
+		<!-- if current user has applied, show good luck note -->
+	<% if can? :manage, Donation %>
+
+		<div id ="donation_box">
+
+		<h2>Contribute to Phoenix Scholarship</h2>
+
+		<p>Please show your support for our actives by contributing to our scholarship funds. Only sisters in the scholarship committee may have input on the recipient. To join the committe and be a board member, please make a contribution of any amount.</p>
+
+	<!-- contribution request -->
+			<%= form_for [@user, @donate], url: users_path do |d| %>
+				<%= d.label :amount %>
+				<%= d.text_field :amt %>
+				<!-- once alumnus inputs an amount, enable option to be a board member -->
+				<div id="be_board_member">
+				<p>Would you like to be a board member?</p>
+					<%= check_box("tag", :role, {disabled: true}) %>
+					<%= label_tag(:role, "Yes") %>
+				</div>
+				<br/>
+				<%= d.submit :send %>
+
+			<% end %> 
+
+		</div>
+
+	<% end %>
+
 </div>
 
 
 
 <div id="linkbox" class="infobox">
 	<ul>
-		<li> <%= link_to "edit info", edit_user_registration_path %> </li>
 
-		<li> <%= link_to "all users", users_roster_path %> </li>
+		<li> <%= link_to "roster", users_roster_path %> </li>
 
-		<% if can? :manage, @donate %>	
-			<li> <%= link_to "your contributions", new_user_donation_path(current_user) %> </li>
-		<% end %>
-
+		<!-- if user status is active -->
 		<% if can? :create, @app %>
 			<li> <%= link_to "apply", new_user_app_path(current_user) %> </li>
 		<% end %>
 
-
 			<li> <%= link_to "my applications", user_apps_path(current_user) %> </li>
 
-
 		<% if can? :read, @all_apps %>
-			<li> <%= link_to "read applications", apps_review_path %> </li>
+			<li> <%= link_to "review current applications", apps_review_path %> </li>
 		<% end %>
 
 		<% if can? :manage, :chair %>
@@ -54,10 +81,13 @@
 		<% end %>
 
 	</ul>
+
+
 </div>
 
 
 </div>
+
 <!-- if user.role = chair and if the set voting deadline has past or if all board members have voted , enable button to get app.user with most votes -->
 <div id="random">
 		<%= form_tag(getawardee_path, method: "post") do %>
