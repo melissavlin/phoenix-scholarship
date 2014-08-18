@@ -2,10 +2,10 @@ class DonationsController < ApplicationController
   # def index
   # end
 
-  def new
-  	@donate = Donation.new
-  	authorize! :manage, Donation
-  end
+  # def new
+  # 	@donate = Donation.new
+  # 	authorize! :manage, Donation
+  # end
 
   def create
    @user = User.find(current_user.id)
@@ -16,9 +16,9 @@ class DonationsController < ApplicationController
       if params[:tag][:role] == "1"
         @donate.user.update(role: "Board")
       end
-      redirect_to new_user_donation_path(current_user), notice: "Thank you for your contribution!"
+      redirect_to root_path, notice: "Thank you for your contribution!"
     else 
-      redirect_to new_user_donation_path(current_user), alert: "Please try again."
+      redirect_to root_path, alert: "Please try again."
     end
   end
 

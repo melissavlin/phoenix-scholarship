@@ -5,6 +5,7 @@ class Ability
     # Give users' with "Active" status ability to create a new application
     if user.status == "Active"
         can :create, App
+
     end
 
     if user.status == "Alumnus"
@@ -17,6 +18,9 @@ class Ability
     can :read, :all if user.role == "Chair"
     
     can :castvote, App if user.has_voted == false
+
+
+            can :read, App, :user_id => user.id
 
 
     # Define abilities for the passed in user here. For example:

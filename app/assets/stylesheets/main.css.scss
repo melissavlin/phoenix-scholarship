@@ -68,6 +68,9 @@ html{
 a {
 	text-decoration: none;
 	color: $redcolor;
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 h2 {

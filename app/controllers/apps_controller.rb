@@ -15,36 +15,29 @@ class AppsController < ApplicationController
   	@app = App.new
     # @hello = "Hello!"
     authorize! :create, App
-    @app.semester
-      month = Date.today.month
-      year = Date.today.year
-      if month >= 8
-        @app.semester = "Fall #{year}"
-      elsif month <=4
-        @app.semester = "Spring #{year}"
-      end
+    #current scholarship semester
+    @current_semester = Semester.last.created_at
+    if @current_semester.month >=
+      @scholarship_season = "Spring #{Date.today.year.next}"
+    else
+      @scholarship_season = "Fall #{Date.today.year}"
+    end
+    # @app.semester
+    #   month = Date.today.month
+    #   year = Date.today.year
+    #   if month >= 8
+    #     @app.semester = "Fall #{year}"
+    #   elsif month <=4
+    #     @app.semester = "Spring #{year}"
+    #   end
   end
 
   def create
   	@user = User.find(current_user.id)
   	# @app.user = User.find(params[:user_id])
   	@app = App.new(app_params)
-    if @app
-      @app.semester
-      # assign semester to application by checking the date of submission 
-      # Fall = between months of Sept (9) - Dec (12)
-      # Spring = btwn months Jan (1) - April (4)
-      month = Date.today.month
-      year = Date.today.year
-      if month >= 8
-        @app.semester = "Fall #{year}"
-      elsif month <=4
-        @app.semester = "Spring #{year}"
-      end
-    end      
-
+    @app.semester_id = Semester.last.id      
   	@app.user = User.find(current_user.id)
-  	
     if @app.save
   		redirect_to user_apps_path(current_user), notice: "App submitted"
   	else
@@ -75,8 +68,10 @@ class AppsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:user_id])
-    @apps = @user.apps
+    # @user = User.find(params[current_user.id])
+    @app = App.find(params[:id])
+    authorize! :read, App
+
   end
 
 

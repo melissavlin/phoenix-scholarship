@@ -14,9 +14,9 @@ Rails.application.routes.draw do
   get 'apps/archive' => "apps#archive"
 
   post 'castvote' => 'apps#castvote'
-  post 'getawardee' => 'users#getawardee'
+  # post 'getawardee' => 'users#getawardee'
   post 'receive_donation' => 'users#receive_donation'
-  post 'start_new_semester' => 'users#start_new_semester'
+  post 'declare_awardee' => 'users#declare_awardee'
   post 'set_deadline' => 'users#set_deadline'
 
   resources :users, only: [:create, :show, :destroy] do

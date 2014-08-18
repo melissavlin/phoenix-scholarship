@@ -7,4 +7,8 @@ module ApplicationHelper
 	def print_date(datetime)
   		datetime.strftime("%m/%d/%Y")
    end
+
+   def print_season(date)
+   	
+   end
 end

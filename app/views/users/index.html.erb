@@ -37,7 +37,7 @@
 		<p>Please show your support for our actives by contributing to our scholarship funds. Only sisters in the scholarship committee may have input on the recipient. To join the committe and be a board member, please make a contribution of any amount.</p>
 
 	<!-- contribution request -->
-			<%= form_for [@user, @donate], url: users_path do |d| %>
+			<%= form_for [@user, @donate], url: user_donations_path(current_user) do |d| %>
 				<%= d.label :amount %>
 				<%= d.text_field :amt %>
 				<!-- once alumnus inputs an amount, enable option to be a board member -->
@@ -86,17 +86,6 @@
 </div>
 
 
-</div>
-
-<!-- if user.role = chair and if the set voting deadline has past or if all board members have voted , enable button to get app.user with most votes -->
-<div id="random">
-		<%= form_tag(getawardee_path, method: "post") do %>
-				<%= submit_tag ("Get Award Winner!"), id: "award_button" %>
-		<% end %>
-
-		<div id="awardee_name">
-			<%= @awardee.nickname %>
-		</div>
 </div>
 
 

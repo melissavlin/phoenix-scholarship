@@ -1,20 +1,49 @@
-<%= form_for @semester, url: set_deadline_path, method: "post") do %>
-	<p>Set Application Deadline: </p> <br/>
-		<%= date_select :app, :app_deadline %>
-	<br/>	
-	<p>Set voting deadline: </p> <br/>
-		<%= date_select :app, :vote_deadline %>
+<h2>Chairmember's Control Panel</h2>
 
-		<%= submit_tag ("Set Deadlines") %>
+<!-- if semester.last.app_deadline is nil, show "please set an app deadline" else, show deadline -->
+
+<%= "#{@scholarship_season}" %><br/>
+<%= "Application deadline : #{@current_semester.app_deadline.to_formatted_s(:long) }"%><br/>
+<%= "Vote deadline: #{@current_semester.vote_deadline.to_formatted_s(:long)}" %> <br/>
+
+<%= form_for @semester, url: set_deadline_path do |f| %>
+	<p>Set Application Deadline: 
+		<%= f.date_select :app_deadline %> </p>
+	<br/>	
+	<p>Set voting deadline: 
+		<%= f.date_select :vote_deadline %> </p>
+
+		<%= f.submit "Set Deadlines" %>
 <% end %>
 
 
 <br/>
-<!-- RESET BUTTON (sets: all apps with status:opened to closed,  users with role:board set back to nil, and has_voted to false) -->
-<p> To start a new semester, please click the below button. Note that this also means your committee board will be empty until Alumnaes donate again. </p>
-	<%= form_tag(start_new_semester_path, method: "post") do %>
-			<%= submit_tag ("start new semester"), id: "new_semester_button" %>
+
+<!-- current applicants -->
+<div id="applicant_wrapper">
+	<h3><%= "Current Applicants for #{@scholarship_season}" %></h3>
+		<% x = 1 %>
+		<% @open_apps.each do |a| %>
+			<%= "#{x}. #{a.user.fname} '#{a.user.nickname}' (votes: #{a.vote_count})" %> <br/>
+			<% x+=1 %>
+		<% end %>
+
+<!-- if the vote deadline of semester.last is past today's date, enable the declare recipient button  -->
+	<% if @check_vote_deadline %> 
+		<p>Voting is now closed </p>
+		<%= form_tag(declare_awardee_path, method: "post") do %>
+				<%= submit_tag ("Declare Scholarship Awardee"), id: "award_button" %>
+		<% end %>
+
+	<% else %>
+		<p> Voting is still open.</p>
+		<%= form_tag(declare_awardee_path, method: "post") do %>
+			<%= submit_tag ("Declare Scholarship Awardee"), id: "award_button", disabled: true %>
+		<% end %>
+
 	<% end %>
+
+</div>
 
 
 <br/>
@@ -22,6 +51,7 @@
 <!-- DONATION MANAGEMENT -->
 <table id ="donation_record">
 	<tr>
+		<td> Date </td>
 		<td> Contributer </td>
 		<td> Amount </td>
 		<td> Status </td>
@@ -30,6 +60,7 @@
 	<% @donations.each do |d| %>
 		<% if d.paid == false %>
 		<tr>
+			<td> <%= print_date(d.created_at) %></td>
 			<td> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </td>
 			<td> <%= print_price(d.amt) %> </td>
 			<td> 
@@ -41,6 +72,7 @@
 		</tr>
 		<% else %>
 		<tr class="paid">
+			<td> <%= print_date(d.created_at) %></td>
 			<td> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </td>
 			<td> <%= print_price(d.amt) %> </td>
 			<td> <%= button_tag "&check; Received".html_safe, disabled: true %> </td>
@@ -48,6 +80,3 @@
 		<% end %>
 	<% end %>
 </table>
-
-
-<%= link_to "Back", root_path %>

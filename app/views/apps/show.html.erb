@@ -1,5 +1,10 @@
 <!-- all current users apps -->
 
-<% @apps.each do |a| %>
-	<%= a.gpa %>
-<% end %>
+
+	<%= print_date(@app.created_at) %><br/>
+	<%= "GPA : #{@app.gpa}" %><br/>
+	<%= "Current Position(s) : #{@app.current_position}" %><br/>
+	<%= "Past Position(s) : #{@app.past_position}" %> <br/>
+	<%= "Sister Events Attended : #{@app.sis_events}" %> <br/>
+	<%= "Proudest Achievement : #{@app.achievement}" %><br/>
+

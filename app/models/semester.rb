@@ -1,3 +1,3 @@
 class Semester < ActiveRecord::Base
-  belongs_to :app
+  has_many :apps
 end
