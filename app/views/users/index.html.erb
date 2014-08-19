@@ -25,6 +25,22 @@
 <div id="newsbox" class="infobox">
 		NEW NEWS
 
+		
+		<% if @semester.app_deadline != nil %>
+			<% if can? :create, @app %>
+				<p><%= "The application deadline is #{print_date(@semester.app_deadline)}"%></p>
+			<% elsif can? :read, @all_apps %>
+				<p> <%= "Sisters have until #{print_date(@semester.app_deadline)} to submit applications. Voting will open after." %></p>
+			<% end %>
+		<% else %>
+			<p> No deadline is set yet for the next scholarship.</p>
+		<% end %>
+
+		<% if can? :read, @all_apps %>
+			<% if @semester.vote_deadline != nil %>
+				<p><%= "When application voting opens, you have until #{print_date(@semester.vote_deadline)} to place your vote." %></p>
+			<% end %>
+		<% end %>
 		<!-- if current user has donated, show thank you note -->
 
 		<!-- if current user has applied, show good luck note -->
@@ -32,7 +48,7 @@
 
 		<div id ="donation_box">
 
-		<h2>Contribute to Phoenix Scholarship</h2>
+		<h3>Contribute to Phoenix Scholarship</h3>
 
 		<p>Please show your support for our actives by contributing to our scholarship funds. Only sisters in the scholarship committee may have input on the recipient. To join the committe and be a board member, please make a contribution of any amount.</p>
 

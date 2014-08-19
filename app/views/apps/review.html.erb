@@ -1,31 +1,41 @@
+<div id="app_selection">
+	<% x = 1 %>
+	<% @all_apps.each do |a| %>
+		
+		<% x += 1%>
+	<% end %>
+</div>
 
 
-<br/>
-<% @all_apps.each do |a| %>
 
-	<%= "GPA : #{a.gpa}" %>
-	<%= "Current Position(s) : #{a.current_position}" %><br/>
-	<%= "Past Position(s) : #{a.past_position}" %> <br/>
-	<%= "Sister Events Attended : #{a.sis_events}" %> <br/>
-	<%= "Proudest Achievement : #{a.achievement}" %>
-		<br/>
+	<% x= 1 %>
+		<% @all_apps.each do |a| %>
+		<div class="review_app_wrapper">
+			<%= "<div class='app_num' id='link_app#{x}'> #{x}</div>".html_safe %>
+				<%= "<div class='review_app' id='app#{x}'>".html_safe %>
+				<%= a.user.fname %><br/>
+				<%= "GPA : #{a.gpa}" %> <br/>
+				<%= "Current Position(s) : #{a.current_position}" %><br/>
+				<%= "Past Position(s) : #{a.past_position}" %> <br/>
+				<%= "Sister Events Attended : #{a.sis_events}" %> <br/>
+				<%= "Proudest Achievement : #{a.achievement}" %> <br/>
+				<% x+=1 %>
+			
+		<!-- if user has not voted yet, she will be able to see the vote button -->
 
-	<!-- if user has not voted yet, she will be able to see the vote button -->
+				<% if can? :castvote, @all_apps %>
+					<%= form_tag(castvote_path, method: "post") do %>
+							<%= hidden_field_tag(:app_id, a.id) %>
+							<%= submit_tag ("Cast Vote")%>
+					<% end %>
+				<% end %>
+				<br/>
+				<% if cannot? :castvote, @all_apps %>
+					<%= button_tag "Voted", disabled: true %>
+				<% end %>
+				</div>
+			</div>
 
-	<% if can? :castvote, @all_apps %>
-		<%= form_tag(castvote_path, method: "post") do %>
-				<%= hidden_field_tag(:app_id, a.id) %>
-				<%= submit_tag ("Cast Vote")%>
 		<% end %>
-	<% end %>
-
-	<br/>
-	<% if cannot? :castvote, @all_apps %>
-		<%= button_tag "Voted", disabled: true %>
-	<% end %>
-
-<hr>
-<% end %>
 
 
-<%= link_to "Back", root_path %>

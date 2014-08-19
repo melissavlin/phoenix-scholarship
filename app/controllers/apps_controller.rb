@@ -1,5 +1,6 @@
 class AppsController < ApplicationController
 	before_action :authenticate_user!
+
   
   def index
   	@apps = current_user.apps
@@ -16,7 +17,7 @@ class AppsController < ApplicationController
     # @hello = "Hello!"
     authorize! :create, App
     #current scholarship semester
-    @current_semester = Semester.last.created_at
+    @current_semester = Semester.last.app_deadline
     if @current_semester.month >=
       @scholarship_season = "Spring #{Date.today.year.next}"
     else
@@ -68,9 +69,10 @@ class AppsController < ApplicationController
   end
 
   def show
-    # @user = User.find(params[current_user.id])
+    # user = User.find(params[:id])
     @app = App.find(params[:id])
-    authorize! :read, App
+    # @own_apps = App.where(user_id: current_user.id)
+    # authorize! :read, App
 
   end
 

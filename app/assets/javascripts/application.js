@@ -17,10 +17,21 @@
 
 
 
-// $(document).on('ready page:load', function(){
-// $("#award_button").on("click", function(){
-// 		$("#awardee_name").show();
-// 	})
-// });
+$(document).ready(function(e){
+	$(".app_num").on("click", function(e){
+		showHideApp(e);
+	});
+});
+
+var showHideApp = function(e){
+	// alert("works");
+	var selector = $(e.delegateTarget).closest('.review_app_wrapper').contents('.review_app').toggle();
+	$(".review_app").hide();
+	$(selector).show();
+	console.log("click");
+	// var selector = $(this).data("toggle");  // get corresponding element
+ //  $("div").hide();
+ //  $(selector).show();
+}
 
 

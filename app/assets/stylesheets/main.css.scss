@@ -292,7 +292,52 @@ h2 {
 }
 
 
+// applications for review
 
+.review_app_wrapper {
+	width: 800px;
+	// position: absolute;
+	.app_num {
+		border: 1px solid red;
+		position: absolute;
+		top: 150px;
+		left: 0px;
+		width: 20px;
+	}	
+	#link_app1 {
+		// position: relative;
+		left: 50px;
+	}
+	#link_app2 {
+		// position: relative;
+		left: 100px;
+	}
+	#link_app3 {
+		// position: relative;
+		left: 150px;
+	}
+	#link_app4 {
+		// position: relative;
+		left: 200px;
+	}
+	#link_app5 {
+		// position: relative;
+		left: 250px;
+	}
+	#link_app6 {
+		// position: relative;
+		left: 300px;
+	}
+	#link_app7 {
+		// position: relative;
+		left: 350px;
+	}
+	.review_app {
+		display:none;
+		position: relative;
+		top: 50px;
+	}	
+}
 
 
 

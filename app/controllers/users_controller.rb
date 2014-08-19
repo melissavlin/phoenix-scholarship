@@ -4,11 +4,12 @@ class UsersController < ApplicationController
 	# before_action :set_user, only: [:show]
 
   def index
-        # @user = User.find(current_user.id)
+    # @user = User.find(current_user.id)
     # @user = User.find(params[:id])
     @app = App.new
     @all_apps = App.all
     @donate = Donation.new
+    @semester = Semester.last
     # hide board member question if current user is a board member
   end
 

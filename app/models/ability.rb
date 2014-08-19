@@ -3,24 +3,29 @@ class Ability
 
   def initialize(user)
     # Give users' with "Active" status ability to create a new application
+ 
     if user.status == "Active"
         can :create, App
-
-    end
-
-    if user.status == "Alumnus"
+    elsif user.status == "Alumnus"
         can :manage, Donation
     end
 
-    can :read, :all if user.role == "Board"
+    if user.role == "Chair"
+        can :read, :all
+        can :manage, :chair
+    elsif user.role == "Board"
+        can :read, :all
+    end
+    # can :read, :all if user.role == "Board"
 
-    can :manage, :chair if user.role == "Chair"
-    can :read, :all if user.role == "Chair"
-    
+    # can :manage, :chair if user.role == "Chair"
+    # can :read, :all if user.role == "Chair"
+
     can :castvote, App if user.has_voted == false
+    # can :access, App, :user_id => user.id
 
 
-            can :read, App, :user_id => user.id
+    # can :read, App, {:user_id => user.id}
 
 
     # Define abilities for the passed in user here. For example:
