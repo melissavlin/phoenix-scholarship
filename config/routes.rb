@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   get 'apps/archive' => "apps#archive"
 
   post 'castvote' => 'apps#castvote'
-  # post 'getawardee' => 'users#getawardee'
   post 'receive_donation' => 'users#receive_donation'
   post 'declare_awardee' => 'users#declare_awardee'
   post 'set_deadline' => 'users#set_deadline'
+  post 'send_msg' => 'users#send_msg_to_actives'
 
   resources :users, only: [:create, :show, :destroy] do
     resources :apps, except: [:edit, :update]

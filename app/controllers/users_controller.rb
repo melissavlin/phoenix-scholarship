@@ -1,3 +1,4 @@
+require 'mandrill'
 class UsersController < ApplicationController
   before_action :authenticate_user!
   # load_and_authorize_resource
@@ -46,6 +47,7 @@ class UsersController < ApplicationController
 
     # donation history section
     @donations = Donation.order("created_at").reverse_order.all
+
   end
 
   # update last semester
@@ -85,6 +87,27 @@ class UsersController < ApplicationController
     donation.update(paid: true)
     redirect_to users_chair_path
   end
+
+# mandrill-api
+# send a new message
+  def send_msg_to_actives
+    subject = params['subject']
+    msg = params['msg']
+    m = Mandrill::API.new
+    message = { 
+    :subject=> subject, 
+    # change to use the email from the user.role = Chair
+    :from_name=> "Name",
+    :from_email=>"from@me.com",
+    :to=>User.to_mandrill_to(User.active), 
+    :html=>"<html><body style='font-family:Arial;font-size:20px'> #{msg}</html>", 
+    # :merge_vars => User.to_mandrill_merge_vars(User.active),
+    :preserve_recipients => false
+    } 
+    sending = m.messages.send message
+    redirect_to users_chair_path, notice: "email sent"
+  end
+
 
 
   private
