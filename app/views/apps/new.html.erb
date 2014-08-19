@@ -1,9 +1,12 @@
-<h2> Application for <%= "#{@scholarship_season}" %> </h2>
+
 
 <div id="application_form">
 	<table>
 
 	<%= form_for [@user, @app], url: user_apps_path do |f| %>
+		<tr>
+			<td colspan="3" id="form_header"><h2> Application for <%= "#{@scholarship_season}" %> </h2></td>
+		</tr>
 		<tr>
 			<td><%= f.label :semester_active, "Number of semesters active" %></td>
 			<td><%= f.text_field :semester_active, id: "input_num" %></td>
@@ -96,12 +99,14 @@
 		<td colspan="3"><div class="app_section_title">supporting documents</div></td>
 		</tr>
 		<tr class="for_textarea">
-			<td colspan="3"><%= f.label :cv, "Cover Letter" %></td>
+			<td colspan="3"><%= f.label :cv, "Cover Letter: In business letter format, explain why you should receive the scholarship." %></td>
 		</tr>
 		<tr>
 			<td colspan="3"><%= f.text_area :cv %></td>
 		</tr>
 		<tr>
+			<td></td>
+			<td></td>
 			<td><%= f.submit :apply, id: "submit_button" %></td>
 		</tr>
 	<% end %> 
@@ -109,8 +114,4 @@
 
 	</table>
 </div>
-
-
-
-
 

@@ -1,10 +1,108 @@
 <!-- all current users apps -->
 
+<div id="application_form">
+	<table>
+		<tr>
+			<td colspan="3" id="form_header"><h2><%= print_date(@app.created_at) %></h2></td>
+		</tr>
+		<tr>
+			<td class="app_q">Number of semesters active</td>
+			<td><%= @app.semester_active %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td colspan="3" class="app_q">List any and all semesters you have been inactive. If you would like, you may include an explanation.</td>
+		</tr>
+		<tr>
+			<td colspan="3"><%= @app.semester_inactive %></td>
+		</tr>
 
-	<%= print_date(@app.created_at) %><br/>
-	<%= "GPA : #{@app.gpa}" %><br/>
-	<%= "Current Position(s) : #{@app.current_position}" %><br/>
-	<%= "Past Position(s) : #{@app.past_position}" %> <br/>
-	<%= "Sister Events Attended : #{@app.sis_events}" %> <br/>
-	<%= "Proudest Achievement : #{@app.achievement}" %><br/>
+		<tr>
+		<td colspan="3"><div class="app_section_title">academic</div></td>
+		</tr>
+		<tr>
+			<td class="app_q">GPA</td>
+			<td><%= @app.gpa %></td>
+		</tr>
+		<tr>
+			<td class="app_q">Credits accumulated to date</td>
+			<td><%= @app.credit_count%></td>
+		</tr>
+		<tr>
+			<td class="app_q">Major(s)</td>
+			<td><%= @app.major %></td>
+		</tr>
+		<tr>
+			<td class="app_q">Minor(s)</td>
+			<td><%= @app.minor %></td>
+		</tr>
+		<tr>
+			<td class="app_q">If applicable, list the semester(s) on which you have been on academic probation.</td>
+			<td><%= @app.academic_probation %></td>
+		</tr>
+		<tr>
+			<td colspan="3" class="app_q">What are your post-graduation or professional goals?</td>
+		</tr>
+		<tr>
+			<td colspan="3"><%= @app.post_grad_goal %></td>
+		</tr>
+		<tr>
+		<td colspan="3"><div class="app_section_title">sisterhood</div></td>
+		</tr>
+		<tr>
+			<td class="app_q">Position(s) held this semester</td>
+			<td><%= @app.current_position %></td>
+		</tr>
+		<tr>
+			<td class="app_q">Position(s) held previous semester(s)</td>
+			<td><%= @app.past_position %></td>
+		</tr>
+		<tr>
+			<td colspan="3" class="app_q">List all accomplishments for position(s) held.</td>
+		</tr>
+		<tr>
+			<td colspan="3"><%= @app.position_accomplishment %></td>
+		</tr>
+		<tr>
+			<td colspan="3" class="app_q">List sister events you attended in previous and current semesters</td>
+		</tr>
+		<tr>
+			<td colspan="3"><%= @app.sis_events %></td>
+		</tr>
+		<tr>
+			<td colspan="3" class="app_q">If applicable, describe your involvement in the planning of any community service events.</td>
+		</tr>
+		<tr>
+			<td colspan="3"><%= @app.sis_event_planning %></td>
+		</tr>
+		<tr>
+			<td colspan="3" class="app_q">What is your proudest achievement as a sister of Kappa Phi Lambda?</td>
+		</tr>
+		<tr>
+			<td colspan="3"><%= @app.achievement %></td>
+		</tr>
+		<tr>
+			<td colspan="3" class="app_q">What is one thing you hope to improve about the sorority on the chapter and/or national level?</td>
+		</tr>
+		<tr>
+			<td colspan="3"><%= @app.org_improvement %></td>
+		</tr>
+		<tr>
+		<td colspan="3"><div class="app_section_title">service</div></td>
+		</tr>
+		<tr>
+		<td colspan="3"><div class="app_section_title">cultural diversity</div></td>
+		</tr>
+		<tr>
+		<td colspan="3"><div class="app_section_title">supporting documents</div></td>
+		</tr>
+		<tr>
+			<td colspan="3" class="app_q">Cover Letter: In business letter format, explain why you should receive the scholarship.</td>
+		</tr>
+		<tr>
+			<td colspan="3"><%= @app.cv %></td>
+		</tr>
+
+	</table>
+</div>
 

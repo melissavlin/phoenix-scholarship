@@ -231,7 +231,19 @@ h2 {
 // APPLICATION FORM STYLING
 #application_form {
 	font-size: .8em;
-
+	#form_header {
+		text-align: center;
+		h2 {
+			font-style: italic;
+			margin-left: 0;
+			margin-right: 0;
+			padding-bottom: 7px;
+			border-bottom: 3px solid $redcolor;
+		}
+	}
+	.app_q {
+		font-style: italic;
+	}
 	@media (max-width: 600px){
 		margin-left: 5px;
 	}
@@ -281,14 +293,19 @@ h2 {
 			outline: none;
 		}
 	}
-	// #submit_button {
-	// 	width: 80px;
-	// 	border: 1px solid black;
-	// 	background-color: $redcolor;
-	// 	color: white;
-	// 	text-transform: uppercase;
-	// 	letter-spacing: 1px;
-	// }
+	#submit_button {
+		width: 80px;
+		position: relative;
+		right: -100px;
+		@media (max-width: 600px) {
+			right: -50px;
+		}
+		// border: 1px solid black;
+		// background-color: $redcolor;
+		// color: white;
+		// text-transform: uppercase;
+		// letter-spacing: 1px;
+	}
 }
 
 
@@ -296,47 +313,78 @@ h2 {
 
 .review_app_wrapper {
 	width: 800px;
+	// display: none;
 	// position: absolute;
 	.app_num {
-		border: 1px solid red;
+		// border: 1px solid red;
+		cursor:pointer;
+		background-color: $redcolor;
 		position: absolute;
-		top: 150px;
+		top: 180px;
 		left: 0px;
-		width: 20px;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		text-align: center;
+		line-height: 120%;
+		opacity: .5;
+		color: white;
+		font-size: 2.9em;
+		&:hover {
+			opacity: .9;
+			// font-style: italic;
+			line-height: 85%;
+		}
 	}	
 	#link_app1 {
 		// position: relative;
-		left: 50px;
+		left: 300px;
 	}
 	#link_app2 {
 		// position: relative;
-		left: 100px;
+		left: 400px;
 	}
 	#link_app3 {
 		// position: relative;
-		left: 150px;
+		left: 500px;
 	}
 	#link_app4 {
 		// position: relative;
-		left: 200px;
+		left: 600px;
 	}
 	#link_app5 {
 		// position: relative;
-		left: 250px;
+		left: 700px;
 	}
 	#link_app6 {
 		// position: relative;
-		left: 300px;
-	}
-	#link_app7 {
-		// position: relative;
-		left: 350px;
+		left: 800px;
 	}
 	.review_app {
 		display:none;
 		position: relative;
-		top: 50px;
+		top: 100px;
 	}	
+
+	form {
+		text-align: center;
+		#vote_button {
+			width: 120px;
+			height: 40px;
+			padding: 10px;
+			opacity: .5;
+			text-align: center;
+			border: 1px solid $redcolor;
+			border-radius: 6px;
+			background-color: $redcolor;
+			color: white;
+			text-transform: uppercase;
+			font-size: 1em;
+			&:hover {
+				opacity: .9;
+			}
+		}
+	}
 }
 
 

@@ -18,7 +18,7 @@ class AppsController < ApplicationController
     authorize! :create, App
     #current scholarship semester
     @current_semester = Semester.last.app_deadline
-    if @current_semester.month >=
+    if @current_semester.month >= 8
       @scholarship_season = "Spring #{Date.today.year.next}"
     else
       @scholarship_season = "Fall #{Date.today.year}"
@@ -80,7 +80,7 @@ class AppsController < ApplicationController
   private
 
   def app_params
-  	params.require(:app).permit(:user_id, :gpa, :current_position, :past_position, :sis_events, :achievement)
+  	params.require(:app).permit(:user_id, :gpa, :current_position, :past_position, :sis_events, :achievement, :semester_active, :semester_inactive, :major, :minor, :credit_count, :academic_probation, :post_grad_goal, :position_accomplishment,   :org_improvement, :com_service_planning, :cv)
   end
 
 end
