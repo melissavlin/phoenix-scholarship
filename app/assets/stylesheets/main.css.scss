@@ -313,53 +313,46 @@ h2 {
 
 .review_app_wrapper {
 	width: 800px;
-	// display: none;
-	// position: absolute;
-	.app_num {
-		// border: 1px solid red;
-		cursor:pointer;
-		background-color: $redcolor;
-		position: absolute;
-		top: 180px;
-		left: 0px;
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
+	.app {
+		margin-top: 20px;
+	}
+	#review_nav_wrapper {
 		text-align: center;
-		line-height: 120%;
-		opacity: .5;
-		color: white;
-		font-size: 2.9em;
-		&:hover {
-			opacity: .9;
-			// font-style: italic;
-			line-height: 85%;
+
+	}
+	.hidden {
+		display: none;
+	}
+	ul {
+
+		display: inline;
+		li{
+			margin-top: 20px;
+			text-align: center;
+			display: inline-block;
+			margin-right: 20px;
+			.link_app  {
+				cursor:pointer;
+				background-color: $redcolor;
+				top: 180px;
+				left: 0px;
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				text-align: center;
+				line-height: 120%;
+				opacity: .5;
+				color: white;
+				font-size: 2.9em;
+				&:hover {
+					opacity: .9;
+					// font-style: italic;
+					// line-height: 85%;
+				}
+			}
 		}
-	}	
-	#link_app1 {
-		// position: relative;
-		left: 300px;
 	}
-	#link_app2 {
-		// position: relative;
-		left: 400px;
-	}
-	#link_app3 {
-		// position: relative;
-		left: 500px;
-	}
-	#link_app4 {
-		// position: relative;
-		left: 600px;
-	}
-	#link_app5 {
-		// position: relative;
-		left: 700px;
-	}
-	#link_app6 {
-		// position: relative;
-		left: 800px;
-	}
+
 	.review_app {
 		display:none;
 		position: relative;
