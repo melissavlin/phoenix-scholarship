@@ -10,6 +10,9 @@
 <body>
 <header>
 
+     <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+
 <% if user_signed_in? %>
 <div id="kpl_header_wrapper">
 	<div id="kpl_header">
@@ -23,9 +26,6 @@
 <% end %>
 
 </header>
-
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
 
 <%= yield %>
 

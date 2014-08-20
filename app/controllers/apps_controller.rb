@@ -48,6 +48,8 @@ class AppsController < ApplicationController
 
   def review
     @all_apps = App.where(open: true)
+    @vote_deadline = Semester.last.vote_deadline
+    @no_voting = Date.today <= @vote_deadline
     authorize! :read, App.all
 
   end

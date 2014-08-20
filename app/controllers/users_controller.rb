@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     # end
 
     # donation history section
-    @donations = Donation.order("created_at").reverse_order.all
+    @donations = Donation.all.reverse_order
 
   end
 

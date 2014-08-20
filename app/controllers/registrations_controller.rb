@@ -1,8 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
-	before_filter :authenticate_user!, :except => [:new]
 
 	def edit
-	  	@donation = current_user.donations
+	  	@donation = current_user.donations.reverse_order
 	  	# authorize! :manage, Donation
 	end
 

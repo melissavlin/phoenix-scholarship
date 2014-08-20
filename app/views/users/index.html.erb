@@ -80,22 +80,22 @@
 <div id="linkbox" class="infobox">
 	<ul class="sidebar">
 		<% if can? :manage, :chair %>
-		<li> <%= link_to "Chairmember Responsibilities", users_chair_path %> </li>
-		<li> <%= link_to "application archive", apps_archive_path %> </li>
+		<li> <%= link_to "Chairmember Access", users_chair_path %> </li>
+		<li> <%= link_to "Application Archive", apps_archive_path %> </li>
 		<% end %>
 
 		<% if can? :read, @all_apps %>
-			<li> <%= link_to "review current applications", apps_review_path %> </li>
+			<li> <%= link_to "Review Current Applications", apps_review_path %> </li>
 		<% end %>
 
 		<!-- if user status is active -->
 		<% if can? :create, @app %>
-			<li> <%= link_to "apply", new_user_app_path(current_user) %> </li>
+			<li> <%= link_to "Apply", new_user_app_path(current_user) %> </li>
 		<% end %>
 
-			<li> <%= link_to "my applications archive", user_apps_path(current_user) %> </li>
+			<li> <%= link_to "My Applications Archive", user_apps_path(current_user) %> </li>
 
-		<li> <%= link_to "roster", users_roster_path %> </li>
+		<li> <%= link_to "Roster", users_roster_path %> </li>
 	</ul>
 
 

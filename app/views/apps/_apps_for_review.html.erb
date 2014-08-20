@@ -117,9 +117,15 @@
 				</div>
 
 				
-
-						<!-- if user has not voted yet, she will be able to see the vote button -->
-				
+					<!-- if current semester's vote deadline has not past yet, disable button else... -->
+						<!-- if user has not voted yet, she will be able to see the vote button else... -->
+							<!-- disable button -->
+					<% if @no_voting %>
+						<div class="vote_notice">
+							<%=  "Voting has not opened yet." %><br/>
+							<%= "You may cast your vote on #{print_date(@vote_deadline)}." %>
+						</div>
+					<% else %>
 						<% if can? :read, @all_apps %>
 							<% if current_user.has_voted == false %>
 								<%= form_tag(castvote_path, method: "post") do %>
@@ -127,9 +133,10 @@
 										<%= submit_tag ("Cast Vote"), id: "vote_button" %>
 								<% end %>
 								<% else %>
-								<%= button_tag "Voted", disabled: true, id: "vote_button" %>
+								<div class="vote_notice"><%=  "Thanks for voting!" %></div>
 							<% end %>
 						<% end %>
+					<% end %>
 
 				<% end %>
 			</div>

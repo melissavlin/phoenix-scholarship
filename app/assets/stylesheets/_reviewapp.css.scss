@@ -3,12 +3,20 @@ $standardfont: 'Open Sans', Arial, sans-serif;
 
 .review_app_wrapper {
 	width: 800px;
+	@media (max-width: 800px) {
+		width: 600px;
+	}
+	@media (max-width: 600px) {
+		width: 400px;
+	}
 	.app {
 		margin-top: 20px;
 	}
 	#review_nav_wrapper {
 		text-align: center;
-
+		@media (max-width: 800px) {
+			width: 400px;
+		}
 	}
 	.hidden {
 		display: none;
@@ -43,10 +51,11 @@ $standardfont: 'Open Sans', Arial, sans-serif;
 		}
 	}
 
-	.review_app {
-		display:none;
-		position: relative;
-		top: 100px;
+	.vote_notice {
+		text-align: center;
+		color: $redcolor;
+		margin-top: 20px;
+		line-height: 130%;
 	}	
 
 	form {

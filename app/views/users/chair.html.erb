@@ -1,17 +1,21 @@
-<h2>Chairmember's Control Panel</h2>
+<h2>Chairmember Access</h2>
+
+<div id="chair_welcome">
+	<p><%= "Hello, #{current_user.fname}!" %></p>
+	<!-- <p> Here you will have access to  -->
+</div>
+
 
 <!-- if semester.last.app_deadline is nil, show "please set an app deadline" else, show deadline -->
-
 <%= "#{@scholarship_season}" %><br/>
 <%= "Application deadline : <span class='date_ref'>#{@current_semester.app_deadline.to_formatted_s(:long) }</span>".html_safe%><br/>
 <%= "Vote deadline: <span class='date_ref'>#{@current_semester.vote_deadline.to_formatted_s(:long)}</span>".html_safe %> <br/>
 
 <%= form_for @semester, url: set_deadline_path do |f| %>
-	<p>Set Application Deadline: 
-		<%= f.date_select :app_deadline %> </p>
-	<br/>	
-	<p>Set voting deadline: 
-		<%= f.date_select :vote_deadline %> </p>
+	<p>Set Application Deadline: </p>
+		<p><%= f.date_select :app_deadline %> </p>
+	<p>Set voting deadline:</p>
+		<p><%= f.date_select :vote_deadline %> </p>
 
 		<%= f.submit "Set Deadlines" %>
 <% end %>
@@ -59,10 +63,14 @@
 </div>
 
 <!-- DONATION MANAGEMENT -->
-<table id ="donation_record">
+<div id="table_wrapper">
+<table class ="donation_record" id="chair_donation_record">
+	<tr>
+		<td colspan="4" class="table_title">Contribution History</td>
+	</tr>
 	<tr>
 		<td> Date </td>
-		<td> Contributer </td>
+		<td class="wide_cell"> Contributor </td>
 		<td> Amount </td>
 		<td> Status </td>
 	</tr>
@@ -71,7 +79,7 @@
 		<% if d.paid == false %>
 		<tr>
 			<td> <%= print_date(d.created_at) %></td>
-			<td> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </td>
+			<td class="wide_cell"> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </td>
 			<td> <%= print_price(d.amt) %> </td>
 			<td> 
 			<%= form_tag(receive_donation_path, method: "post") do %>
@@ -83,10 +91,11 @@
 		<% else %>
 		<tr class="paid">
 			<td> <%= print_date(d.created_at) %></td>
-			<td> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </td>
+			<td class="wide_cell"> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </td>
 			<td> <%= print_price(d.amt) %> </td>
 			<td> <%= button_tag "&check; Received".html_safe, disabled: true %> </td>
 		</tr>
 		<% end %>
 	<% end %>
 </table>
+</div>

@@ -1,88 +1,92 @@
 <h2>Update your information</h2>
-<div class="signup_edit_form">
-  <div class="form_section" id="left_form_section">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= devise_error_messages! %>
+<div id="edit_user_wrapper">
+    <div class="signup_edit_form">
+      <div class="form_section" id="left_form_section">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
 
-      <div><%= f.label :nickname %><br />
-      <%= f.text_field :nickname %></div>
+          <div><%= f.label :nickname %><br />
+          <%= f.text_field :nickname %></div>
 
-      <div><%= f.label :first_name %><br />
-      <%= f.text_field :fname %></div>
+          <div><%= f.label :first_name %><br />
+          <%= f.text_field :fname %></div>
 
-      <div><%= f.label :last_name %><br />
-      <%= f.text_field :lname %></div>
+          <div><%= f.label :last_name %><br />
+          <%= f.text_field :lname %></div>
 
-      <div><%= f.label :greek_class %><br />
-      Upsilon <%= f.select(:greek_class, [['Alpha'], ['Beta'], ['Gamma'], ['Delta'], ['Epsilon'], ['Zeta'], ['Eta'], ['Theta'], ['Iota'], ['Lambda'], ['Mu'], ['Nu']]) %></div>
+          <div><%= f.label :greek_class %><br />
+          Upsilon <%= f.select(:greek_class, [['Alpha'], ['Beta'], ['Gamma'], ['Delta'], ['Epsilon'], ['Zeta'], ['Eta'], ['Theta'], ['Iota'], ['Lambda'], ['Mu'], ['Nu']]) %></div>
 
-      <div><%= f.label :crossing_season %><br />
-      <%= f.text_field :xseason, placeholder: "ex: Spring 08" %></div>
+          <div><%= f.label :crossing_season %><br />
+          <%= f.text_field :xseason, placeholder: "ex: Spring 08" %></div>
 
-       <div><%= f.label :graduation_year%><br />
-      <%= f.text_field :gradyr %></div>
+           <div><%= f.label :graduation_year%><br />
+          <%= f.text_field :gradyr %></div>
 
-      <div>
+          <div>
 
-      <% if can? :manage, :chair %>
-      <%= f.label :status %><br/>
-      <%= f.select(:status, [['Active'], ['Alumnus']]) %>
-      <% else %>
-      <%= f.label :status %><br/>
-      <span class="form_note">*to change status, please send request to Chairwoman</span><br/>
-      <%= f.select :status, [['Active'], ['Alumnus']], {}, {disabled: true} %>
-      <% end %>
+          <% if can? :manage, :chair %>
+            <%= f.label :status %><br/>
+            <%= f.select(:status, [['Active'], ['Alumnus']]) %>
+          <% else %>
+            <%= f.label :status %><br/>
+            <span class="form_note">*to change status, please send request to Chairwoman</span><br/>
+            <%= f.select :status, [['Active'], ['Alumnus']], {}, {disabled: true} %>
+          <% end %>
+          </div>
+        </div>
+
+        <div class="form_section" id="right_form_section">
+          <div><%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true %></div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div><%= f.label :password %><br/>
+          <span class="form_note">*leave blank if you don't want to change it</span><br />
+            <%= f.password_field :password, autocomplete: "off" %></div>
+
+          <div><%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+
+          <div><%= f.label :current_password %><br/>
+          <span class="form_note">*we need your current password to confirm your changes</span><br />
+            <%= f.password_field :current_password, autocomplete: "off" %></div>
+
+          <div><%= f.submit "Update", id: "submit_button" %></div>
+        <% end %>
+
       </div>
     </div>
 
-    <div class="form_section">
-      <div><%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %></div>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <!-- <div id="user_donation_record_wrapper"> -->
+      <% if can? :manage, Donation %>  
+        
+        <table class="donation_record">
+          <tr>
+            <td colspan="2" class="table_title">Your contributions</td>
+          </tr>
+          <tr>
+            <td> Date </td>
+            <td> Amount </td>
+          </tr>
+        <!-- show all users' contributions -->
+        <% @donation.each do |d| %>
+          <tr>
+            <td> <%= print_date(d.created_at) %> </td>
+            <td> <%= print_price(d.amt) %></td>
+          </tr>
+        <% end %>
+        
+        </table>
       <% end %>
 
-      <div><%= f.label :password %><br/>
-      <span class="form_note">*leave blank if you don't want to change it</span><br />
-        <%= f.password_field :password, autocomplete: "off" %></div>
-
-      <div><%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-      <div><%= f.label :current_password %><br/>
-      <span class="form_note">*we need your current password to confirm your changes</span><br />
-        <%= f.password_field :current_password, autocomplete: "off" %></div>
-
-      <div><%= f.submit "Update", id: "submit_button" %></div>
-    <% end %>
-
-
-    <p>Click below to cancel your account.</p>
-    <p><%= button_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, id: "delete_account_button" %></p>
-  </div>
+    <!-- </div> -->
 </div>
 
-<!-- <div id="user_donation_record_wrapper"> -->
-  <% if can? :manage, Donation %>  
-    
-    <table id="user_donation_record">
-      <tr>
-        <td colspan="2" id="table_title">Your contributions</td>
-      </tr>
-      <tr>
-        <td> Date </td>
-        <td> Amount </td>
-      </tr>
-    <!-- show all users' contributions -->
-    <% @donation.each do |d| %>
-      <tr>
-        <td> <%= print_date(d.created_at) %> </td>
-        <td> <%= print_price(d.amt) %></td>
-      </tr>
-    <% end %>
-    
-    </table>
-  <% end %>
-
-<!-- </div> -->
+<div id="delete_account">
+    <p>Click below to cancel your account.</p>
+    <p><%= button_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, id: "delete_account_button" %></p>
+</div>
