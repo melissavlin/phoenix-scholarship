@@ -13,11 +13,12 @@
 <% if user_signed_in? %>
 <div id="kpl_header_wrapper">
 	<div id="kpl_header">
-		
 		KPL Phoenix Scholarship
-
 	</div>
-		<p id="header_subline"> <%= link_to "Hello #{current_user.nickname}", root_path %> / <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
+  <div id="kpl_header_layer">
+    KPL Phoenix Scholarship
+  </div>
+		<p id="header_subline"> <%= link_to "Hello #{current_user.fname}", root_path %> / <%= link_to "sign out", destroy_user_session_path, method: :delete %> </p>
 </div>
 <% end %>
 

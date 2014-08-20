@@ -11,14 +11,23 @@ class User < ActiveRecord::Base
   # validates_format_of :email, :with => /@/
   validates :nickname, :fname, :status, presence: true
 
-
+  # for email
   scope :active, -> {where(status: "Active")}
-  # scope :alumni, -> {where(status: "Alumnus")}
-  # scope :board, -> {where(status: "Board")}
+  scope :alumnae, -> {where(status: "Alumnus")}
+  scope :board, -> {where(role: "Board")}
 
-   def self.to_mandrill_to(users)
-  	# outputs array of hashes [{:email => "email"}, ...]
-	 users.map{|user| {:name => user.fname, :email => user.email}}
+  def self.to_mandrill_to(users)
+    if users == "active"
+  	  User.active.map{|user| {:name => user.fname, :email => user.email}}
+    elsif users == "alumnus"
+      User.alumnae.map{|user| {:name => user.fname, :email => user.email}}
+    elsif users == "board"
+      User.board.map{|user| {:name => user.fname, :email => user.email}}
+    elsif users == "all"
+      User.all.map{|user| {:name => user.fname, :email => user.email}}
+    end
+    # outputs array of hashes [{:email => "email"}, ...]
+	 # users.map{|user| {:name => user.fname, :email => user.email}}
 	 # outputs array of emails only ["email", "email"]
  		# users.map{|user| user.email }
 	end

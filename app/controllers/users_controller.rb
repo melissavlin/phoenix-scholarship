@@ -93,13 +93,14 @@ class UsersController < ApplicationController
   def send_msg_to_actives
     subject = params['subject']
     msg = params['msg']
+    recipient = params['rcpt']
     m = Mandrill::API.new
     message = { 
     :subject=> subject, 
     # change to use the email from the user.role = Chair
     :from_name=> "Name",
     :from_email=>"from@me.com",
-    :to=>User.to_mandrill_to(User.active), 
+    :to=>User.to_mandrill_to(recipient), 
     :html=>"<html><body style='font-family:Arial;font-size:20px'> #{msg}</html>", 
     # :merge_vars => User.to_mandrill_merge_vars(User.active),
     :preserve_recipients => false

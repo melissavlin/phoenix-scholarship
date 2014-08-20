@@ -27,7 +27,7 @@ $(document).on('ready page:load', function(){
 
 
 function triggerQ() {
-	var question = document.getElementById('tag_role');
+	var question = document.getElementById('role');
 	(parseInt(this.value) >= 1 ? question.disabled = "" : question.disabled = 'disabled');
 	(parseInt(this.value) >= 1 ? question.checked = true : question.checked = false);
 }

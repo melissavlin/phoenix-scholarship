@@ -1,0 +1,69 @@
+$redcolor: #CE0000;
+$standardfont: 'Open Sans', Arial, sans-serif;
+
+.signup_edit_form {
+	width: 700px;
+	margin: 10px auto;
+	font-size: .8em;
+	#left_form_section {
+		float:left;
+	}
+	.form_section {
+		margin: auto;
+		width: 350px;
+		position: relative;
+		label {
+			color: $redcolor;
+		}
+		@media (max-width: 630px) {
+			margin-left: 30px;
+		}
+	}
+
+	div {
+		margin-bottom: 10px;
+	}
+	input {
+		margin-top: 6px;
+		padding: 5px;
+		width: 150px;
+		border: 1px solid black;
+		&:focus {
+			border:1px solid $redcolor;
+			outline: none;
+		}
+	}
+
+	#delete_account_button {
+		width: 200px;
+		border: 1px solid black;
+		background-color: #ccc;
+		color: black;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+
+}
+
+#user_donation_record {
+	width: 300px;
+	border: 2px solid $redcolor;
+	#table_title {
+		padding: 5px;
+		text-align: center;
+		color: white;
+		text-transform: uppercase;
+		background-color: $redcolor;
+		border-bottom: 1px solid $redcolor;
+	}
+	tr {
+		height: 25px;
+		border-bottom: 1px dashed #aaa;
+	}
+	td {
+		vertical-align: middle;
+		padding-left: 15px;
+	}
+
+}

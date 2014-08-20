@@ -1,18 +1,17 @@
 <div id="homepage">
 
 <div id="userbox" class="infobox">
-
-	<ul>
+	<ul class="sidebar">
 			<li><%= "#{current_user.fname} #{current_user.lname}" %></li>
 			<li><%= "#{current_user.nickname}" %></li>
-			<li><%= "Status : #{current_user.status}" %>
+			<li><%= "Upsilon #{current_user.greek_class}" %></li>
+			<li><%= "#{current_user.status}" %>
 
 				<% if can? :read, @all_apps %>
 				<%= " and Boardmember" %>
 				<% end %>
 
 			</li>
-			<li><%= "Upsilon #{current_user.greek_class}" %></li>
 			<li><%= "Graduation Year : #{current_user.gradyr}" %></li>
 	</ul>
 	 
@@ -23,24 +22,27 @@
 
 <!-- SHOW NEWS (EX: RECIPIENT, DEADLINES, ETC) -->
 <div id="newsbox" class="infobox">
-		NEW NEWS
-
+		<!-- <h3 class="index_title">NEW NEWS</h3> -->
+		<h3 class="index_title" id="new_header_l">NEW</h3>
+		<h3 class="index_title" id="new_header_r">NEWS</h3>
 		
-		<% if @semester.app_deadline != nil %>
-			<% if can? :create, @app %>
-				<p><%= "The application deadline is #{print_date(@semester.app_deadline)}"%></p>
-			<% elsif can? :read, @all_apps %>
-				<p> <%= "Sisters have until #{print_date(@semester.app_deadline)} to submit applications. Voting will open after." %></p>
+		<div id="news_notice">
+			<% if @semester.app_deadline != nil %>
+				<% if can? :create, @app %>
+					<p><%= "The application deadline is <span class='date_ref'>#{print_date(@semester.app_deadline)}</span>".html_safe %></p>
+				<% elsif can? :read, @all_apps %>
+					<p> <%= "Sisters have until <span class='date_ref'>#{print_date(@semester.app_deadline)} </span> to submit applications. Voting will open after.".html_safe %></p>
+				<% end %>
+			<% else %>
+				<p> No deadline is set yet for the next scholarship.</p>
 			<% end %>
-		<% else %>
-			<p> No deadline is set yet for the next scholarship.</p>
-		<% end %>
 
-		<% if can? :read, @all_apps %>
-			<% if @semester.vote_deadline != nil %>
-				<p><%= "When application voting opens, you have until #{print_date(@semester.vote_deadline)} to place your vote." %></p>
+			<% if can? :read, @all_apps %>
+				<% if @semester.vote_deadline != nil %>
+					<p><%= "When application voting opens, you have until <span class='date_ref'>#{print_date(@semester.vote_deadline)}</span> to place your vote.".html_safe %></p>
+				<% end %>
 			<% end %>
-		<% end %>
+		</div>
 		<!-- if current user has donated, show thank you note -->
 
 		<!-- if current user has applied, show good luck note -->
@@ -48,22 +50,22 @@
 
 		<div id ="donation_box">
 
-		<h3>Contribute to Phoenix Scholarship</h3>
+		<h4>Contribute to Phoenix Scholarship</h4>
 
 		<p>Please show your support for our actives by contributing to our scholarship funds. Only sisters in the scholarship committee may have input on the recipient. To join the committe and be a board member, please make a contribution of any amount.</p>
 
 	<!-- contribution request -->
 			<%= form_for [@user, @donate], url: user_donations_path(current_user) do |d| %>
-				<%= d.label :amount %>
+				<%= d.label :amount, "$" %>
 				<%= d.text_field :amt %>
 				<!-- once alumnus inputs an amount, enable option to be a board member -->
 				<div id="be_board_member">
 				<p>Would you like to be a board member?</p>
-					<%= check_box("tag", :role, {disabled: true}) %>
+					<%= check_box_tag :role, value ="yes", checked=false, {disabled: true} %>
 					<%= label_tag(:role, "Yes") %>
 				</div>
 				<br/>
-				<%= d.submit :send %>
+				<%= d.submit :send, id: "submit_button" %>
 
 			<% end %> 
 
@@ -76,26 +78,24 @@
 
 
 <div id="linkbox" class="infobox">
-	<ul>
+	<ul class="sidebar">
+		<% if can? :manage, :chair %>
+		<li> <%= link_to "Chairmember Responsibilities", users_chair_path %> </li>
+		<li> <%= link_to "application archive", apps_archive_path %> </li>
+		<% end %>
 
-		<li> <%= link_to "roster", users_roster_path %> </li>
+		<% if can? :read, @all_apps %>
+			<li> <%= link_to "review current applications", apps_review_path %> </li>
+		<% end %>
 
 		<!-- if user status is active -->
 		<% if can? :create, @app %>
 			<li> <%= link_to "apply", new_user_app_path(current_user) %> </li>
 		<% end %>
 
-			<li> <%= link_to "my applications", user_apps_path(current_user) %> </li>
+			<li> <%= link_to "my applications archive", user_apps_path(current_user) %> </li>
 
-		<% if can? :read, @all_apps %>
-			<li> <%= link_to "review current applications", apps_review_path %> </li>
-		<% end %>
-
-		<% if can? :manage, :chair %>
-		<li> <%= link_to "manage contributions", users_chair_path %> </li>
-		<li> <%= link_to "application archive", apps_archive_path %> </li>
-		<% end %>
-
+		<li> <%= link_to "roster", users_roster_path %> </li>
 	</ul>
 
 
