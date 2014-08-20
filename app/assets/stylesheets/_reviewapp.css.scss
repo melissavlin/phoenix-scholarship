@@ -1,6 +1,15 @@
 $redcolor: #CE0000;
 $standardfont: 'Open Sans', Arial, sans-serif;
 
+#review_app_header {
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	font-size: 1.7em;
+	// font-weight: bold;
+	color: $redcolor;
+
+}
+
 .review_app_wrapper {
 	width: 800px;
 	@media (max-width: 800px) {
