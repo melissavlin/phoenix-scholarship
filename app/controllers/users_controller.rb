@@ -1,17 +1,37 @@
 require 'mandrill'
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  # load_and_authorize_resource
-	# before_action :set_user, only: [:show]
 
   def index
-    # @user = User.find(current_user.id)
-    # @user = User.find(params[:id])
     @app = App.new
     @all_apps = App.all
     @donate = Donation.new
     @semester = Semester.last
-    # hide board member question if current user is a board member
+    # validate app deadline
+    app_deadline = Semester.last.app_deadline
+    if app_deadline != nil
+      @app_deadline_past= Date.today >= app_deadline
+    end
+    # check if current user submitted an app already, get all apps where open = true
+    if current_user.status == "Active"
+      open_apps = App.where(open:true)
+      @user_id = User.find(current_user.id).id
+      if open_apps.find_by(user_id:@user_id)
+        @already_applied = open_apps.find_by(user_id:@user_id).user_id
+      end
+    end
+    # disable app review if vote deadline has past
+    vote_deadline = Semester.last.vote_deadline
+    if vote_deadline != nil
+      @voting_closed = Date.today >= vote_deadline
+    end
+    @last_awardee = App.where(award:true).last.user.fname
+    last_semester = Semester.all[-2]
+    if last_semester.app_deadline.month >= 8
+      @last_scholarship_season = "Spring #{last_semester.app_deadline.year} Scholarship"
+    else
+      @last_scholarship_season = "Fall #{last_semester.app_deadline.year} Scholarship"
+    end
   end
 
   def roster
@@ -24,27 +44,22 @@ class UsersController < ApplicationController
   end
 
 # the below views only the chairmember can see
-
   def chair
     authorize! :manage, :chair
     @semester = Semester.new
     @current_semester = Semester.last
     if @current_semester.app_deadline == nil
-      @scholarship_season = "No deadline is set yet." 
+      @scholarship_season = "Scholarship Pending" 
     elsif @current_semester.app_deadline.month >= 8
       @scholarship_season = "Spring #{Date.today.year.next} Scholarship"
     else
       @scholarship_season = "Fall #{Date.today.year} Scholarship"
     end
-
     # applicants section
     @open_apps = App.where(open: true).order("vote_count").reverse_order
-    @check_vote_deadline = Date.today > Semester.last.vote_deadline
-
-      # app_winner = App.order("vote_count").reverse_order.first
-      # @awardee = app_winner.user
-    # end
-
+    if @current_semester.vote_deadline != nil
+      @check_vote_deadline = Date.today > Semester.last.vote_deadline
+    end
     # donation history section
     @donations = Donation.all.reverse_order
 
@@ -60,36 +75,37 @@ class UsersController < ApplicationController
       end
   end
 
-# declare scholarship recipient, which will trigger the following:
-# out of all the current apps (with open status), get app with most votes and change award attr to true
-# create new semester
-# set all apps with open status to false
-# user with role:board, change to nil and has_voted to false
   def declare_awardee
-    apps = App.where(open: true)
-
-    apps.each do |a|
-      a.update(open: false)
+    # auto start a new semester
+    @semester = Semester.new #(semester_params)
+    if @semester.save
+      # declare the applicant with most votes as awardee
+      open_apps = App.where(open: true)
+      app_awardee = open_apps.order("vote_count").reverse_order.first
+      app_awardee.update(award:true)
+      # close the status of all open apps
+      open_apps.each do |a|
+        a.update(open: false)
+      end
+      # remove the role of boardmember from all users
+      users = User.where(role: "Board")
+      users.each do |u|
+        u.update(role: nil, has_voted: false)
+      end
+      redirect_to users_chair_path
+    else
+      redirect_to users_chair_path, alert: "There was a problem declaring an award winner."  
     end
-    users = User.where(role: "Board")
-    users.each do |u|
-      u.update(role: nil, has_voted: false)
-    end
-    semester = Semester.new(semester_params)
-    semester.save
-    redirect_to users_chair_path
   end
 
 # post method when paid button is click
-# change donation.paid value to true
   def receive_donation
     donation = Donation.find(params[:donation_id])
     donation.update(paid: true)
     redirect_to users_chair_path
   end
 
-# mandrill-api
-# send a new message
+# mandrill-api, send a new message
   def send_msg_to_actives
     subject = params['subject']
     msg = params['msg']
@@ -117,7 +133,4 @@ class UsersController < ApplicationController
     params.require(:semester).permit(:year, :season, :app_deadline, :vote_deadline)
   end
 
-  # def set_user
-  # 	@user = User.find(params[:id])
-  # end
 end

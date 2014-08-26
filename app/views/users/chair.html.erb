@@ -3,18 +3,21 @@
 
 
 <div id="chair_welcome">
-	<!-- <p><%# "Hello, #{current_user.fname}!" %></p> -->
-	<!-- <p> Here you have access to setting the current scholarship's deadline for both applicant's and committee members.</p> -->
+	<!-- instructions for chairperson -->
 </div>
 
 <div id="chair_page_top_wrapper">
 
 	<div class="chair_section" id="deadline_wrapper">
-		<!-- if semester.last.app_deadline is nil, show "please set an app deadline" else, show deadline -->
+	
 		<p class="chair_header"><%= "#{@scholarship_season}" %></p>
-		<%= "Application deadline : <span class='date_ref'>#{@current_semester.app_deadline.to_formatted_s(:long) }</span>".html_safe%><br/>
-		<%= "Vote deadline: <span class='date_ref'>#{@current_semester.vote_deadline.to_formatted_s(:long)}</span>".html_safe %> <br/>
 
+		<% if @current_semester.app_deadline == nil %>
+			<%= "No deadline is set yet" %>
+		<% else %>
+			<%= "Application deadline : <span class='date_ref'>#{@current_semester.app_deadline.to_formatted_s(:long) }</span>".html_safe%><br/>
+			<%= "Vote deadline: <span class='date_ref'>#{@current_semester.vote_deadline.to_formatted_s(:long)}</span>".html_safe %> <br/>
+		<% end %>
 		<%= form_for @semester, url: set_deadline_path do |f| %>
 			<p>Set Application Deadline: </p>
 				<p><%= f.date_select :app_deadline %> </p>
@@ -42,10 +45,7 @@
 
 		<% else %>
 			<p class="vote_notice"> Voting is still open.</p>
-			<%= form_tag(declare_awardee_path, method: "post") do %>
-				<%= submit_tag ("Declare Scholarship Awardee"), id: "award_button", disabled: true %>
-			<% end %>
-
+			<%= button_tag "Declare Scholarship Awardee", id: "award_button", disabled: true %>
 		<% end %>
 
 	</div>

@@ -1,11 +1,4 @@
 class DonationsController < ApplicationController
-  # def index
-  # end
-
-  # def new
-  # 	@donate = Donation.new
-  # 	authorize! :manage, Donation
-  # end
 
   def create
     @user = User.find(current_user.id)
@@ -14,7 +7,6 @@ class DonationsController < ApplicationController
     check_board = params['role']
     if @donate.amt == nil
       redirect_to root_path, alert: "Please enter an amount."
-      # check if checkbox is checked
     elsif @donate
       if check_board == "yes"
         if @donate.user.role == "Chair"
@@ -27,9 +19,7 @@ class DonationsController < ApplicationController
         end
       else
         @donate.save
-        redirect_to root_path, notice: "Thank you for your contribution!"
-
-      # redirect_to root_path, notice: "Thank you for your contribution! You are now also a boardmember."  
+        redirect_to root_path, notice: "Thank you for your contribution!" 
       end
     end
   end
@@ -40,7 +30,4 @@ class DonationsController < ApplicationController
     params.require(:donation).permit(:user_id, :amt)
   end
 
-  # def user_params
-  #   params.require(:user).permit(:role)
-  # end
 end

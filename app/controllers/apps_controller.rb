@@ -14,28 +14,19 @@ class AppsController < ApplicationController
 
   def new
   	@app = App.new
-    # @hello = "Hello!"
     authorize! :create, App
-    #current scholarship semester
     @current_semester = Semester.last.app_deadline
-    if @current_semester.month >= 8
-      @scholarship_season = "Spring #{Date.today.year.next}"
-    else
-      @scholarship_season = "Fall #{Date.today.year}"
+    if @current_semester != nil
+      if @current_semester.month >= 8
+        @scholarship_season = "Spring #{Date.today.year.next}"
+      else
+        @scholarship_season = "Fall #{Date.today.year}"
+      end
     end
-    # @app.semester
-    #   month = Date.today.month
-    #   year = Date.today.year
-    #   if month >= 8
-    #     @app.semester = "Fall #{year}"
-    #   elsif month <=4
-    #     @app.semester = "Spring #{year}"
-    #   end
   end
 
   def create
   	@user = User.find(current_user.id)
-  	# @app.user = User.find(params[:user_id])
   	@app = App.new(app_params)
     @app.semester_id = Semester.last.id      
   	@app.user = User.find(current_user.id)
@@ -49,13 +40,14 @@ class AppsController < ApplicationController
   def review
     @all_apps = App.where(open: true)
     @vote_deadline = Semester.last.vote_deadline
-    @no_voting = Date.today <= @vote_deadline
+    if @vote_deadline != nil
+      @no_voting = Date.today <= @vote_deadline
+    end
     authorize! :read, App.all
-
   end
 
   def castvote
-    authorize! :castvote, App.all
+    authorize! :castvote, App
     # get current users id, change has_voted? to true
     @user = User.find(current_user.id)
     if @user
@@ -71,11 +63,9 @@ class AppsController < ApplicationController
   end
 
   def show
-    # user = User.find(params[:id])
     @app = App.find(params[:id])
     # @own_apps = App.where(user_id: current_user.id)
     # authorize! :read, App
-
   end
 
 

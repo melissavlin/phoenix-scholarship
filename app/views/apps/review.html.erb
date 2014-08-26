@@ -2,19 +2,26 @@
 	<div class="review_app_wrapper">
 
 		<div id="review_nav_wrapper">
-				<header id="review_app_header">
-					applicants
-				</header>
+				<% if @vote_deadline == nil %>
+					<header id="review_app_header">
+						No applicants yet
+						</header>
+				<% else %>
+					<header id="review_app_header">
+						applicants
+					</header>
+				<% end %>
 			<ul>
 			<% @all_apps.each_with_index do |a, x| %>
 				<li>
-				<%# "<div class='app_num' id='link_app_#{x + 1}'> #{x + 1}</div>".html_safe %>
 				<%= content_tag_for :div, a, :link do %> <%= "#{x + 1}" %> <% end %>
 				</li>
 			<% end %>
 			</ul>
 		</div>
 	</div>
+
+
 
 					<%= render partial: 'apps_for_review', collection: @all_apps  %>
 		

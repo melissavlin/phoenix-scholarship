@@ -22,19 +22,21 @@
 
 <!-- SHOW NEWS (EX: RECIPIENT, DEADLINES, ETC) -->
 <div id="newsbox" class="infobox">
-		<!-- <h3 class="index_title">NEW NEWS</h3> -->
 		<h3 class="index_title" id="new_header_l">NEW</h3>
 		<h3 class="index_title" id="new_header_r">NEWS</h3>
-		
 		<div id="news_notice">
-			<% if @semester.app_deadline != nil %>
+			<% if @semester.app_deadline == nil %>
+				<p> No deadline is set yet for the next scholarship.</p>
+
+				<% else %>
 				<% if can? :create, @app %>
 					<p><%= "The application deadline is <span class='date_ref'>#{print_date(@semester.app_deadline)}</span>".html_safe %></p>
+						<% if @already_applied == true%>
+							<p class="thanks_notice">Thank you for applying! </p>
+						<% end %>
 				<% elsif can? :read, @all_apps %>
 					<p> <%= "Sisters have until <span class='date_ref'>#{print_date(@semester.app_deadline)} </span> to submit applications. Voting will open after.".html_safe %></p>
 				<% end %>
-			<% else %>
-				<p> No deadline is set yet for the next scholarship.</p>
 			<% end %>
 
 			<% if can? :read, @all_apps %>
@@ -42,10 +44,9 @@
 					<p><%= "When application voting opens, you have until <span class='date_ref'>#{print_date(@semester.vote_deadline)}</span> to place your vote.".html_safe %></p>
 				<% end %>
 			<% end %>
-		</div>
-		<!-- if current user has donated, show thank you note -->
 
-		<!-- if current user has applied, show good luck note -->
+		</div>
+
 	<% if can? :manage, Donation %>
 
 		<div id ="donation_box">
@@ -54,7 +55,7 @@
 
 		<p>Please show your support for our actives by contributing to our scholarship funds. Only sisters in the scholarship committee may have input on the recipient. To join the committe and be a board member, please make a contribution of any amount.</p>
 
-	<!-- contribution request -->
+			<!-- contribution request -->
 			<%= form_for [@user, @donate], url: user_donations_path(current_user) do |d| %>
 				<%= d.label :amount, "$" %>
 				<%= d.text_field :amt %>
@@ -76,6 +77,12 @@
 </div>
 
 
+<div id="awardbox" class="infobox">
+<h3>Congratulations</h3>
+<p id="awardee_name"><%= @last_awardee %></p>
+<p><%= "#{@last_scholarship_season} recipient"%></p>
+</div>
+
 
 <div id="linkbox" class="infobox">
 	<ul class="sidebar">
@@ -85,19 +92,36 @@
 		<% end %>
 
 		<% if can? :read, @all_apps %>
-			<li> <%= link_to "Review Current Applications", apps_review_path %> </li>
+			<% if @voting_closed %>
+				<li> Voting has closed. </li>
+			<% else %>
+				<li> <%= link_to "Review Current Applications", apps_review_path %> </li>
+			<% end %>
 		<% end %>
 
-		<!-- if user status is active -->
 		<% if can? :create, @app %>
-			<li> <%= link_to "Apply", new_user_app_path(current_user) %> </li>
+			<!-- if user has already applied -->
+			<% if @already_applied == current_user.id %>
+				<li> Application received. </li>
+			<!-- if app deadline is past or if current user has already submitted app for current semester -->
+			<% elsif @app_deadline_past %>
+				<li> Applications are closed, the deadline has past.</li>
+				<!-- if user status is active -->
+			<% else %>
+				<li> <%= link_to "Apply", new_user_app_path(current_user) %> </li>
+			<% end %>
 		<% end %>
 
 			<li> <%= link_to "My Applications Archive", user_apps_path(current_user) %> </li>
 
 		<li> <%= link_to "Roster", users_roster_path %> </li>
-	</ul>
 
+	</ul>
+		<% if can? :manage, :chair %>
+			<p></p>
+		<% elsif can? :manage, Donation %>
+			<p>Note to Alumnae : Each semester, a new committee is gathered to review applications. In order to be a part of this committee, please contribute to the scholarship funds in the left hand side. </p>
+		<% end %>
 
 </div>
 

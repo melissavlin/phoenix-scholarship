@@ -1,8 +1,6 @@
 		<% @all_apps.each_with_index do |a, x| %>
 		<div class="review_app_wrapper">
-		<!-- content_tag_for -->
-			<%# "<div class='app_num' id='link_app#{x + 1}'> #{x + 1}</div>".html_safe %>
-				<%# "<div class='review_app' id='app#{x + 1}'>".html_safe %>
+
 				<%= content_tag_for :div, a, class: "hidden" do %>
 
 					<div id="application_form">
@@ -120,7 +118,7 @@
 					<!-- if current semester's vote deadline has not past yet, disable button else... -->
 						<!-- if user has not voted yet, she will be able to see the vote button else... -->
 							<!-- disable button -->
-					<% if @no_voting %>
+					<% if @no_voting == false%>
 						<div class="vote_notice">
 							<%=  "Voting has not opened yet." %><br/>
 							<%= "You may cast your vote on #{print_date(@vote_deadline)}." %>
