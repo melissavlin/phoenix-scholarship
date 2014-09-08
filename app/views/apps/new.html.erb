@@ -1,117 +1,96 @@
 
 
 <div id="application_form">
-	<table>
 
 	<%= form_for [@user, @app], url: user_apps_path do |f| %>
-		<tr>
-			<td colspan="3" id="form_header"><h2> Application for <%= "#{@scholarship_season}" %> </h2></td>
-		</tr>
-		<tr>
-			<td><%= f.label :semester_active, "Number of semesters active" %></td>
-			<td><%= f.text_field :semester_active, id: "input_num" %></td>
-			<td></td>
-		</tr>
-		<tr class="for_textarea">
-			<td colspan="3"><%= f.label :semester_inactive, "List any and all semesters you have been inactive. If you would like, you may include an explanation." %></td>
-		</tr>
-		<tr>
-			<td colspan="3"><%= f.text_area :semester_inactive %></td>
-		</tr>
+		<div id="form_header"><h2> Application for <%= "#{@scholarship_season}" %> </h2></div>
+		
+		<div>
+			<%= f.label :semester_active, "Number of semesters active", class: "short_q"%>
+			<%= f.text_field :semester_active, id: "input_num" %>
+		</div>
+		
+		<div>
+			<%= f.label :semester_inactive, "List any and all semesters you have been inactive. If you would like, you may include an explanation.", class: "long_q" %>
+			<%= f.text_area :semester_inactive %>
+		</div>
 
-		<tr>
-		<td colspan="3"><div class="app_section_title">academic</div></td>
-		</tr>
-		<tr>
-			<td><%= f.label :gpa, "Cumulative GPA"%></td>
-			<td><%= f.text_field :gpa, id: "input_num" %></td>
-		</tr>
-		<tr>
-			<td><%= f.label :credit_count, "Credits accumulated to date"%></td>
-			<td><%= f.text_field :credit_count, id: "input_num" %></td>
-		</tr>
-		<tr>
-			<td><%= f.label :major, "Major(s)"%></td>
-			<td><%= f.text_field :major %></td>
-		</tr>
-		<tr>
-			<td><%= f.label :minor, "Minor(s)"%></td>
-			<td><%= f.text_field :minor %></td>
-		</tr>
-		<tr>
-			<td><%= f.label :academic_probation, "If applicable, list the semester(s) on which you have been on academic probation."%></td>
-			<td><%= f.text_field :academic_probation %></td>
-		</tr>
-		<tr class="for_textarea">
-			<td colspan="3"><%= f.label :post_grad_goal, "What are your post-graduation or professional goals?" %></td>
-		</tr>
-		<tr>
-			<td colspan="3"><%= f.text_area :post_grad_goal %></td>
-		</tr>
-		<tr>
-		<td colspan="3"><div class="app_section_title">sisterhood</div></td>
-		</tr>
-		<tr>
-			<td><%= f.label :current_position, "Position(s) held this semester" %></td>
-			<td><%= f.text_field :current_position %></td>
-		</tr>
-		<tr>
-			<td><%= f.label :past_position, "Position(s) held previous semester(s)" %></td>
-			<td><%= f.text_field :past_position %></td>
-		</tr>
-		<tr class="for_textarea">
-			<td colspan="3"><%= f.label :position_accomplishment, "List all accomplishments for position(s) held." %></td>
-		</tr>
-		<tr>
-			<td colspan="3"><%= f.text_area :position_accomplishment %></td>
-		</tr>
-		<tr class="for_textarea">
-			<td colspan="3"><%= f.label :sis_events, "List sister events you attended in previous and current semesters" %></td>
-		</tr>
-		<tr>
-			<td colspan="3"><%= f.text_area :sis_events %></td>
-		</tr>
-		<tr class="for_textarea">
-			<td colspan="3"><%= f.label :sis_event_planning, "If applicable, describe your involvement in the planning of any community service events." %></td>
-		</tr>
-		<tr>
-			<td colspan="3"><%= f.text_area :sis_event_planning %></td>
-		</tr>
-		<tr class="for_textarea">
-			<td colspan="3"><%= f.label :achievement, "What is your proudest achievement as a sister of Kappa Phi Lambda?" %></td>
-		</tr>
-		<tr>
-			<td colspan="3"><%= f.text_area :achievement %></td>
-		</tr>
-		<tr class="for_textarea">
-			<td colspan="3"><%= f.label :org_improvement, "What is one thing you hope to improve about the sorority on the chapter and/or national level?" %></td>
-		</tr>
-		<tr>
-			<td colspan="3"><%= f.text_area :org_improvement %></td>
-		</tr>
-		<tr>
-		<td colspan="3"><div class="app_section_title">service</div></td>
-		</tr>
-		<tr>
-		<td colspan="3"><div class="app_section_title">cultural diversity</div></td>
-		</tr>
-		<tr>
-		<td colspan="3"><div class="app_section_title">supporting documents</div></td>
-		</tr>
-		<tr class="for_textarea">
-			<td colspan="3"><%= f.label :cv, "Cover Letter: In business letter format, explain why you should receive the scholarship." %></td>
-		</tr>
-		<tr>
-			<td colspan="3"><%= f.text_area :cv %></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td><%= f.submit :apply, id: "submit_button" %></td>
-		</tr>
+		<div class="app_section_title">academic</div>
+		<div>
+			<%= f.label :gpa, "Cumulative GPA", class: "short_q"%>
+			<%= f.text_field :gpa, id: "input_num" %>
+		</div>
+
+		<div>
+			<%= f.label :credit_count, "Credits accumulated to date", class: "short_q"%>
+			<%= f.text_field :credit_count, id: "input_num" %>
+		</div>
+		
+		<div>
+			<%= f.label :major, "Major(s)", class: "long_q"%>
+			<%= f.text_field :major %>
+		</div>
+		<div>
+			<%= f.label :minor, "Minor(s)", class: "long_q"%>
+			<%= f.text_field :minor %>
+		</div>
+		<div>
+			<%= f.label :academic_probation, "If applicable, list the semester(s) on which you have been on academic probation.", class: "long_q"%>
+			<%= f.text_field :academic_probation %>
+		</div>
+
+		<div>
+			<%= f.label :post_grad_goal, "What are your post-graduation or professional goals?", class: "long_q" %>
+			<%= f.text_area :post_grad_goal %>
+		</div>
+
+		<div class="app_section_title">sisterhood</div>
+		<div>
+			<%= f.label :current_position, "Position(s) held this semester", class: "long_q" %>
+			<%= f.text_field :current_position %>
+		</div>
+		<div>
+			<%= f.label :past_position, "Position(s) held previous semester(s)", class: "long_q" %>
+			<%= f.text_field :past_position %>
+		</div>
+
+		<div class="for_textarea">
+			<%= f.label :position_accomplishment, "List all accomplishments for position(s) held.", class: "long_q" %>
+			<%= f.text_area :position_accomplishment %>
+		</div>
+
+		<div class="for_textarea">
+			<%= f.label :sis_events, "List sister events you attended in previous and current semesters", class: "long_q" %>
+			<%= f.text_area :sis_events %>
+		</div>
+
+		<div class="for_textarea">
+			<%= f.label :sis_event_planning, "If applicable, describe your involvement in the planning of any community service events.", class: "long_q" %>
+			<%= f.text_area :sis_event_planning %>
+		</div>
+
+		<div class="for_textarea">
+			<%= f.label :achievement, "What is your proudest achievement as a sister of Kappa Phi Lambda?", class: "long_q" %>
+			<%= f.text_area :achievement %>
+		</div>
+
+		<div class="for_textarea">
+			<%= f.label :org_improvement, "What is one thing you hope to improve about the sorority on the chapter and/or national level?", class: "long_q" %>
+			<%= f.text_area :org_improvement %>
+		</div>
+
+		<div class="app_section_title">service</div>
+		<div class="app_section_title">cultural diversity</div>
+		<div class="app_section_title">supporting documents</div>
+
+		<div class="for_textarea">
+			<%= f.label :cv, "Cover Letter: In business letter format, explain why you should receive the scholarship.", class: "long_q" %>
+			<%= f.text_area :cv %>
+		</div>
+		<div id="button_wrapper">
+			<%= f.submit :apply, id: "submit_button" %>
+</div>
 	<% end %> 
 
-
-	</table>
 </div>
 

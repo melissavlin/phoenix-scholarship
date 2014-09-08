@@ -16,21 +16,21 @@
 //= require_tree .
 
 $(document).on('ready page:load', function(){
-// $(document).ready(function(){
 	$(".link_app").on("click", function(e){
 		showHideApp(e);
 	})
-	var donation_amt = document.getElementById('donation_amt');
-	donation_amt.addEventListener('blur', triggerQ, false);
-	donation_amt.addEventListener('keyup', triggerQ, false);
+	$("#donation_amt").bind("blur keyup", function(event){
+		event.preventDefault();
+		triggerQ();
+	});
 });
 
 
-function triggerQ() {
-	var question = document.getElementById('role');
-	(parseInt(this.value) >= 1 ? question.disabled = "" : question.disabled = 'disabled');
-	(parseInt(this.value) >= 1 ? question.checked = true : question.checked = false);
-}
+	var triggerQ = function() {
+		if (parseInt($("#donation_amt").val())  >= 1) {
+			$("#role").removeAttr("disabled");
+		}
+	}
 
 	var showHideApp = function(e){
 		console.log($(e.delegateTarget).prop("id"));
@@ -40,9 +40,7 @@ function triggerQ() {
 
 		$('.app').addClass('hidden');
 		$("#"+link).removeClass('hidden');
-			// var selector = $(e.delegateTarget).closest('.review_app_wrapper').siblings().contents(link).toggle(); 
-			// $(".review_app").hide();
-			// $(selector).show();
+
 	}
 
 

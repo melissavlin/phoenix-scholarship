@@ -11,13 +11,8 @@ $standardfont: 'Open Sans', Arial, sans-serif;
 }
 
 .review_app_wrapper {
-	width: 800px;
-	@media (max-width: 800px) {
-		width: 600px;
-	}
-	@media (max-width: 600px) {
-		width: 400px;
-	}
+	width: 90%;
+	line-height: 130%;
 	.app {
 		margin-top: 20px;
 	}
