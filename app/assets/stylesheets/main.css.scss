@@ -478,38 +478,83 @@ h2 {
 	}
 }
 
-#chair_donation_record {
-	width: 600px;
-	@media (max-width: 600px) {
-		width: 380px;
-	}
-}
 
-#table_wrapper {
+
+.table_wrapper {
 	border: 2px solid $redcolor;
 	width: 606px;
 	height: 200px;
 	overflow: scroll;
 	margin-bottom: 30px;
 	overflow-x:hidden;
+	text-align: center;
+	.table_title {
+		padding: 5px;
+		color: white;
+		text-transform: uppercase;
+		background-color: $redcolor;
+		border-bottom: 1px solid $redcolor;
+	}
+	#chair_donation_record {
+		width: 600px;
+		.donation_row{
+			height: 28px;
+			width: 100%;
+			clear:both;
+			border-bottom: 1px dashed #aaa;
+			div {
+				margin-top: 5px;
+				float:left;
+			}
+		}
+		.received_donation_button{
+			font-size: 12px;
+			padding: 0 10px;
+			text-decoration: none;
+			border: 2px solid $redcolor;
+			letter-spacing: 1px;
+			border-radius: 3px;
+			&:hover{
+				background-color: #eee;
+			}
+		}
+		.donation_complete_button {
+			color: $redcolor;
+		}
+		@media (max-width: 600px) {
+			width: 380px;
+		}
+		.date_column {
+			width: 20%;
+		}
+		.name_column {
+			width: 40%;
+		}
+		.amt_column {
+			width: 15%;
+		}
+		.status_column {
+			width: 25%;
+		}
+	}
 	@media (max-width: 600px) {
 		width: 380px;
 		height: 450px;
 	}	
 }
 
-#table_wrapper::-webkit-scrollbar-track{
+.table_wrapper::-webkit-scrollbar-track{
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #F5F5F5;
 
 }
 
-#table_wrapper::-webkit-scrollbar{
+.table_wrapper::-webkit-scrollbar{
 	width: 6px;
 	background-color: #F5F5F5;
 }
 
-#table_wrapper::-webkit-scrollbar-thumb{
+.table_wrapper::-webkit-scrollbar-thumb{
 	background-color: $redcolor;
 }
 

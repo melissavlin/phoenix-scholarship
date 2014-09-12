@@ -63,6 +63,17 @@ class UsersController < ApplicationController
     # donation history section
     @donations = Donation.all.reverse_order
 
+    # unapproved accounts
+    @unapproved_users = User.where(approved:false)
+  end
+
+  def approve_user
+    user = User.find(params[:id])
+    if user.update(approved:true)
+      redirect_to users_chair_path
+    else
+      render :chair, alert: "Could not approve new account. Please try again."
+    end
   end
 
   # update last semester
@@ -101,8 +112,13 @@ class UsersController < ApplicationController
 # post method when paid button is click
   def receive_donation
     donation = Donation.find(params[:donation_id])
-    donation.update(paid: true)
-    redirect_to users_chair_path
+    if donation.update(paid: true)
+      respond_to do |format|
+        format.html {redirect_to users_chair_path, notice: "donation received"}
+        format.js {head :no_content}
+      end
+    # redirect_to users_chair_path
+    end
   end
 
 # mandrill-api, send a new message

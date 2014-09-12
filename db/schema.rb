@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817212820) do
+ActiveRecord::Schema.define(version: 20140911175000) do
 
   create_table "apps", force: true do |t|
     t.integer  "user_id"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20140817212820) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "has_voted",              default: false
+    t.boolean  "approved",               default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

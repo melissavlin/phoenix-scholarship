@@ -64,23 +64,21 @@
     <!-- <div id="user_donation_record_wrapper"> -->
       <% if can? :manage, Donation %>  
         
-        <table class="donation_record">
-          <tr>
-            <td colspan="2" class="table_title">Your contributions</td>
-          </tr>
-          <tr>
-            <td> Date </td>
-            <td> Amount </td>
-          </tr>
+        <div class="donation_record">
+          <div class="table_title">Your contributions</div>
+            <div class="donation_row">
+              <div class="date_column"> Date </div>
+              <div class="amt_column"> Amount </div>
+            </div>
         <!-- show all users' contributions -->
-        <% @donation.each do |d| %>
-          <tr>
-            <td> <%= print_date(d.created_at) %> </td>
-            <td> <%= print_price(d.amt) %></td>
-          </tr>
-        <% end %>
+          <% @donation.each do |d| %>
+            <div class="donation_row">
+              <div class="date_column"> <%= print_date(d.created_at) %> </div>
+              <div class="amt_column"> <%= print_price(d.amt) %></div>
+            </div>
+          <% end %>
         
-        </table>
+        </div>
       <% end %>
 
     <!-- </div> -->

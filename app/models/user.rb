@@ -25,7 +25,18 @@ class User < ActiveRecord::Base
     elsif users == "all"
       User.all.map{|user| {:name => user.fname, :email => user.email}}
     end
+ 	end
 
-	end
+  def active_for_authentication?
+    super && approved?
+  end
+
+  def inactive_message
+    if !approved?
+      :not_approved
+    else
+      super "Something went wrong."
+    end
+  end
 
 end

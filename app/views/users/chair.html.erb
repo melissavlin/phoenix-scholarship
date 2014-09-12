@@ -52,6 +52,15 @@
 
 </div>
 
+<div id="account_approval_wrapper">
+<p>Member Requests</p>
+<p>New members requests waiting for approval.</p>
+	<% @unapproved_users.each do |u| %>
+		<%= u.email %> | <%= link_to "Approve", approve_user_path(u) %><br/>
+	<% end %>
+</div>
+
+
 <div id="email_wrapper">
 	<div id="email_body">
 		<div id="email_notice">
@@ -76,39 +85,33 @@
 </div>
 
 <!-- DONATION MANAGEMENT -->
-<div id="table_wrapper">
-<table class ="donation_record" id="chair_donation_record">
-	<tr>
-		<td colspan="4" class="table_title">Contribution History</td>
-	</tr>
-	<tr>
-		<td> Date </td>
-		<td class="wide_cell"> Contributor </td>
-		<td> Amount </td>
-		<td> Status </td>
-	</tr>
-
-	<% @donations.each do |d| %>
-		<% if d.paid == false %>
-		<tr>
-			<td> <%= print_date(d.created_at) %></td>
-			<td class="wide_cell"> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </td>
-			<td> <%= print_price(d.amt) %> </td>
-			<td> 
-			<%= form_tag(receive_donation_path, method: "post") do %>
-				<%= hidden_field_tag(:donation_id, d.id) %>
-				<%= submit_tag ("Not yet received") %>
+<div class="table_wrapper">
+	<div id="chair_donation_record">
+		<div class="table_title">Contribution History</div>
+			<div class="donation_row">
+				<div class="date_column"> Date </div>
+				<div class="name_column"> Contributor </div>
+				<div class="amt_column"> Amount </div>
+				<div class="status_column"> Status </div>
+			</div>
+		<% @donations.each do |d| %>
+			<% if d.paid == false %>
+				<div class="donation_row">
+					<div class="date_column"><%= print_date(d.created_at) %></div>
+					<div class="name_column"> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </div>
+					<div class="amt_column"> <%= print_price(d.amt) %> </div>
+					<div class="status_column"> 
+						<%= link_to "Received", receive_donation_path(donation_id: d.id), method: :post, remote: true, class: "received_donation_button", id: d.id %>
+					</div>
+				</div>
+			<% else %>
+			<div class="donation_row">
+				<div class="date_column"> <%= print_date(d.created_at) %></div>
+				<div class="name_column"> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </div>
+				<div class="amt_column"> <%= print_price(d.amt) %> </div>
+				<div class="status_column"> <p class="donation_complete_button"> &check; </p> </div>
+			</div>
 			<% end %>
-			</td>
-		</tr>
-		<% else %>
-		<tr class="paid">
-			<td> <%= print_date(d.created_at) %></td>
-			<td class="wide_cell"> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </td>
-			<td> <%= print_price(d.amt) %> </td>
-			<td> <%= button_tag "&check; Received".html_safe, disabled: true %> </td>
-		</tr>
 		<% end %>
-	<% end %>
-</table>
+	</div>
 </div>

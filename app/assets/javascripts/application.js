@@ -23,6 +23,20 @@ $(document).on('ready page:load', function(){
 		event.preventDefault();
 		triggerQ();
 	});
+
+	// $(document).on('ajax:success', '.check', function(e){
+	// 	// $(e.currentTarget).switchClass('received_donation_button', 'donation_complete_button');
+	// 	$(e.currentTarget).removeClass('received_donation_button');
+	// });
+
+	$(".received_donation_button").on("click", function(e){
+		$.ajax({
+			success: function(){
+				$(e.delegateTarget).removeClass('received_donation_button').html("<p class='donation_complete_button'> &check; </p>");
+			}
+		})
+	})
+
 });
 
 

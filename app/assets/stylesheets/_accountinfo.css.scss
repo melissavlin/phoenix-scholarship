@@ -3,6 +3,7 @@ $standardfont: 'Open Sans', Arial, sans-serif;
 
 #edit_user_wrapper{
 	width: 900px;
+	margin-top: 30px;
 	@media (max-width: 630px){
 		width: 300px;
 	}
@@ -51,11 +52,13 @@ $standardfont: 'Open Sans', Arial, sans-serif;
 }
 
 #delete_account{
+	clear:both;
 	text-align: center;
 	position: relative;
 	width: 280px;
 	height: 50px;
 	margin: 0 auto;
+	margin-top: 50px;
 	line-height: 140%;
 	#delete_account_button {
 		width: 200px;
@@ -70,10 +73,13 @@ $standardfont: 'Open Sans', Arial, sans-serif;
 }
 
 .donation_record {
-	margin: 0;
+	float:left;
+	margin: 0 auto;
 	width: 280px;
+	height: 100%;
 	border: 2px solid $redcolor;
 	text-align: center;
+	margin-bottom: 50px;
 	.table_title {
 		padding: 5px;
 		color: white;
@@ -81,14 +87,17 @@ $standardfont: 'Open Sans', Arial, sans-serif;
 		background-color: $redcolor;
 		border-bottom: 1px solid $redcolor;
 	}
-	tr {
-		height: 25px;
-		border-bottom: 1px dashed #aaa;
-	}
-	td {
-		vertical-align: middle;
-		// padding-left: 15px;
-		// col-width: 100px;
+	.donation_row{
+		width: 100%;
+		clear:both;
+		div {
+			height: 25px;
+			border-bottom: 1px dashed #aaa;
+			float:left
+		}
+		.date_column, .amt_column{
+			width: 50%;
+		}
 	}
 
 }

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post 'declare_awardee' => 'users#declare_awardee'
   post 'set_deadline' => 'users#set_deadline'
   post 'send_msg' => 'users#send_msg_to_actives'
+  match 'users/:id/approve' => 'users#approve_user', :via => [:get, :post], :as => 'approve_user' 
 
   resources :users, only: [:create, :show, :destroy] do
     resources :apps, except: [:edit, :update]
