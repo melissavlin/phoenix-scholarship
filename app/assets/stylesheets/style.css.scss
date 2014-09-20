@@ -1,0 +1,86 @@
+$redcolor: #CE0000;
+$standardfont: 'Open Sans', Arial, sans-serif;
+
+// USER HOME PAGE
+// HEADER NAV BAR
+hilite {
+  color: $redcolor;
+}
+#navbar {
+	background-color: $redcolor;
+	padding-top: 20px;
+	a {
+		color: white;
+	}
+}
+#header_crest {
+	background: url(/kpl_crest.png) no-repeat;
+	// background-size: contain;
+	background-size: 165px auto;
+	background-position: 10px 0;
+	height: 280px;
+	width: 190px;
+	position: absolute;
+	top: 0;
+	background-color: #ddd;
+	border-bottom: 2px solid $redcolor;
+	border-left: 2px solid $redcolor;
+	border-right: 2px solid $redcolor;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	#crest_title {
+		text-transform: uppercase;
+		font-size: 18px;
+		line-height: 20px;
+		position: absolute;
+		bottom: 5px;
+		text-align: center;
+
+	}
+}
+
+#content_wrapper {
+	position: relative;
+	top: 130px;
+
+	// HOMEPAGE MAIN CONTENT STYLING
+
+	#recent_award_recipient {
+		text-align: center;
+		text-transform: uppercase;
+		#awardee_name {
+			color: $redcolor;
+		}
+	}
+	
+	#notice {
+		// background-color: #eee;
+		padding-left: 20px;
+		padding-right: 20px;
+		.notice_body {
+			margin-left: 35px;
+			margin-bottom: 40px;
+			// border: 1px solid $redcolor;
+			padding: 10px;
+			@media (max-width: 600px){
+				margin-left: 0px;
+			}
+			.notice_title {
+				text-align: center;
+				background-color: $redcolor;
+				margin-bottom: 7px;
+				color: white;
+				border-radius: 2px;
+			}
+			#donation_wrapper {
+				text-align: center;
+				margin-top: 10px;
+				#be_board_member {
+					margin-top: 10px;
+					margin-bottom: 10px;
+				}
+			}
+		}		
+	}
+
+}

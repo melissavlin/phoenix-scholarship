@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @all_apps = App.all
     @donate = Donation.new
     @semester = Semester.last
+    @date = Date.today
     # validate app deadline
     app_deadline = Semester.last.app_deadline
     if app_deadline != nil

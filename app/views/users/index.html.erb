@@ -1,22 +1,69 @@
-<div id="homepage">
+<div class="units-row" id="recent_award_recipient">
+	<h4> Congratulations to the <%= "#{@last_scholarship_season} recipient"%></h4>
+	<h3 id="awardee_name"> <%= @last_awardee %> </h3> 
+</div>
 
-<div id="userbox" class="infobox">
-	<ul class="sidebar">
-			<li><%= "#{current_user.fname} #{current_user.lname}" %></li>
-			<li><%= "#{current_user.nickname}" %></li>
-			<li><%= "Upsilon #{current_user.greek_class}" %></li>
-			<li><%= "#{current_user.status}" %>
+<!-- WELCOME LETTER -->
+<div class="units-row">
+	<div class="unit-centered unit-60" id="notice">
+			<% if can? :read, @all_apps %>
+				<p><%= "Hello Boardmember," %></p>
+			<% else %>
+				<p><%= "Hello #{current_user.status}," %></p>
+			<% end %>
 
-				<% if can? :read, @all_apps %>
-				<%= " and Boardmember" %>
+			<div class="notice_body">
+				<div class="notice_title">Announcements</div>
+				<% if @semester.app_deadline == nil %>
+					<p class="end"> No deadline is set yet for the next scholarship.</p>
+
+				<% else %>
+					<% if can? :create, @app %>
+						<p class="end"> <%= "The application deadline is <hilite>#{print_date(@semester.app_deadline)}</hilite>. ".html_safe %>
+							<% if @already_applied == true%>
+								Thank you for applying!
+							<% end %>
+						 </p>
+					<% elsif can? :read, @all_apps %>
+						<p class="end"> <%= "Sisters have until <hilite>#{print_date(@semester.app_deadline)} </hilite> to submit applications. Voting will open after.".html_safe %></p>
+					<% end %>
 				<% end %>
 
-			</li>
-			<li><%= "Graduation Year : #{current_user.gradyr}" %></li>
-	</ul>
-	 
-	<%= link_to "my account", edit_user_registration_path %> 
+				<% if can? :read, @all_apps %>
+					<% if @semester.vote_deadline != nil %>
+						<p class="end"><%= "When application voting opens, you have until <hilite>#{print_date(@semester.vote_deadline)}</hilite> to place your vote.".html_safe %></p>
+					<% end %>
+				<% end %>
+				<em>If you have any questions, you can contact the current chairwoman, [name], at [email].</em>
+			</div>
 
+			<% if can? :manage, Donation %>
+
+				<div class="notice_body">
+					<div class="notice_title">Contribute to Phoenix Scholarship</div>
+					<p class="end">Please show your support for our actives by contributing to our scholarship funds. Only sisters in the scholarship committee may have input on the recipient. To join the committe and be a board member, please make a contribution of any amount.</p>
+
+						<!-- contribution request -->
+						<div id="donation_wrapper">
+							<%= form_for [@user, @donate], url: user_donations_path(current_user) do |d| %>
+								<%= d.label :amount, "$" %>
+								<%= d.text_field :amt %>
+								<!-- once alumnus inputs an amount, enable option to be a board member -->
+								<div id="be_board_member">
+									<p class="end">Would you like to be a board member?</p>
+										<%= check_box_tag :role, value ="yes", checked=false, {disabled: true} %>
+										<%= label_tag(:role, "Yes") %>
+								</div>
+
+								<%= d.submit :send, id: "submit_button" %>
+
+							<% end %> 
+						</div>
+				</div>
+
+			<% end %>
+
+	</div>
 </div>
 
 
@@ -24,64 +71,9 @@
 <div id="newsbox" class="infobox">
 		<h3 class="index_title" id="new_header_l">NEW</h3>
 		<h3 class="index_title" id="new_header_r">NEWS</h3>
-		<div id="news_notice">
-			<% if @semester.app_deadline == nil %>
-				<p> No deadline is set yet for the next scholarship.</p>
-
-				<% else %>
-				<% if can? :create, @app %>
-					<p><%= "The application deadline is <span class='date_ref'>#{print_date(@semester.app_deadline)}</span>".html_safe %></p>
-						<% if @already_applied == true%>
-							<p class="thanks_notice">Thank you for applying! </p>
-						<% end %>
-				<% elsif can? :read, @all_apps %>
-					<p> <%= "Sisters have until <span class='date_ref'>#{print_date(@semester.app_deadline)} </span> to submit applications. Voting will open after.".html_safe %></p>
-				<% end %>
-			<% end %>
-
-			<% if can? :read, @all_apps %>
-				<% if @semester.vote_deadline != nil %>
-					<p><%= "When application voting opens, you have until <span class='date_ref'>#{print_date(@semester.vote_deadline)}</span> to place your vote.".html_safe %></p>
-				<% end %>
-			<% end %>
-
-		</div>
-
-	<% if can? :manage, Donation %>
-
-		<div id ="donation_box">
-
-		<h4>Contribute to Phoenix Scholarship</h4>
-
-		<p>Please show your support for our actives by contributing to our scholarship funds. Only sisters in the scholarship committee may have input on the recipient. To join the committe and be a board member, please make a contribution of any amount.</p>
-
-			<!-- contribution request -->
-			<%= form_for [@user, @donate], url: user_donations_path(current_user) do |d| %>
-				<%= d.label :amount, "$" %>
-				<%= d.text_field :amt %>
-				<!-- once alumnus inputs an amount, enable option to be a board member -->
-				<div id="be_board_member">
-				<p>Would you like to be a board member?</p>
-					<%= check_box_tag :role, value ="yes", checked=false, {disabled: true} %>
-					<%= label_tag(:role, "Yes") %>
-				</div>
-				<br/>
-				<%= d.submit :send, id: "submit_button" %>
-
-			<% end %> 
-
-		</div>
-
-	<% end %>
 
 </div>
 
-
-<div id="awardbox" class="infobox">
-<h3>Congratulations</h3>
-<p id="awardee_name"><%= @last_awardee %></p>
-<p><%= "#{@last_scholarship_season} recipient"%></p>
-</div>
 
 
 <div id="linkbox" class="infobox">
@@ -124,8 +116,4 @@
 		<% end %>
 
 </div>
-
-
-</div>
-
 

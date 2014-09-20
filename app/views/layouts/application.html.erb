@@ -8,34 +8,41 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<header>
-
 <% if user_signed_in? %>
-<div id="kpl_header_wrapper">
-	<div id="kpl_header">
-		KPL Phoenix Scholarship
-	</div>
-  <div id="kpl_header_layer">
-    KPL Phoenix Scholarship
-  </div>
+  <header id="header_wrapper">
+    <div class="units-row" id="navbar">
+        <ul class="unit-push-right unit-25">
+          <li><%= link_to "#{current_user.fname}", root_path %></li>
+          <li><%= link_to "my account", edit_user_registration_path %> </li>
+          <li><%= link_to "sign out", destroy_user_session_path, method: :delete %></li>
+        </ul>
+    </div>
+    <div class="units-row end">
+      <div class="unit-push-right unit-25">
+      <%= @date %>
+        <% if can? :manage, :chair %>
+            <br/>
+            <%= link_to "Chairmember Access", users_chair_path %>
+        <% end %>
+      </div>
+    </div>
 
+    <div class="units-row end units-mobile-50">
+      <div class="unit-push-10 unit-25" id="header_crest">
+        <div id="crest_title">phoenix scholarship</div>
+      </div>
+    </div>
 
-		<p id="header_subline"> <%= link_to "Hello #{current_user.fname}", root_path %> / <%= link_to "sign out", destroy_user_session_path, method: :delete %>
-      <% if can? :manage, :chair %>
-          <br/>
-          <%= link_to "Chairmember Access", users_chair_path %>
-      <% end %>
-    </p>
+  </header>
+<% end %>
+
+<div id="content_wrapper">
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    
-</div>
-<% end %>
-
-</header>
 
 <%= yield %>
 
+</div>
 </body>
 </html>
