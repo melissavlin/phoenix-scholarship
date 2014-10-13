@@ -33,20 +33,8 @@ class UsersController < ApplicationController
     else
       @last_scholarship_season = "Fall #{last_semester.app_deadline.year} Scholarship"
     end
-  end
 
-  def roster
-    @users = User.all
-
-  end
-
-  def show
-
-  end
-
-# the below views only the chairmember can see
-  def chair
-    authorize! :manage, :chair
+    # authorize! :manage, :chair
     @semester = Semester.new
     @current_semester = Semester.last
     if @current_semester.app_deadline == nil
@@ -66,6 +54,20 @@ class UsersController < ApplicationController
 
     # unapproved accounts
     @unapproved_users = User.where(approved:false)
+  end
+
+  def roster
+    @users = User.all
+
+  end
+
+  def show
+
+  end
+
+# the below views only the chairmember can see
+  def chair
+
   end
 
   def approve_user

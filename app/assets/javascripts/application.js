@@ -37,6 +37,24 @@ $(document).on('ready page:load', function(){
 		})
 	})
 
+	function hasClick(objId){
+		this.objId = objId
+		this.hasClick = false;	
+	}
+
+	var mobileMenu = new hasClick("#mobile-nav");
+
+	$("#menu-icon").click(function(){
+		if(mobileMenu.hasClick ==false){
+			$("#mobile-nav").show();
+			$("#navbar").css("height", "180px");
+				mobileMenu.hasClick = true;
+		} else {
+			$("#mobile-nav").hide();
+			$("#navbar").css("height", "102px");
+				mobileMenu.hasClick = false;
+		}
+	});
 });
 
 

@@ -3,18 +3,70 @@ $standardfont: 'Open Sans', Arial, sans-serif;
 
 // USER HOME PAGE
 // HEADER NAV BAR
-hilite {
-  color: $redcolor;
-}
+hilite { color: $redcolor; }
+
 #navbar {
 	background-color: $redcolor;
-	padding-top: 20px;
-	a {
-		color: white;
+	padding-top: 40px;
+	height: 102px;
+	a { color: white; }
+	#desktop-nav{
+		li {
+			display: inline;
+			margin-right: 15px;
+		}
+		@media (min-width: 601px){
+			display: block;
+		}
+		@media (max-width: 600px){
+			display: none;
+		}
 	}
+	#ddmenu {
+		@media (min-width: 601px){
+			display:none;
+		}
+		@media(max-width: 600px){
+			display: block;
+		}
+		#menu-icon{
+			display: none;
+			@media (max-width: 600px){
+				width: 40px;
+				height: 40px;
+				color: white;
+				display: block;
+				cursor: pointer;
+				-moz-user-select:none;
+				-webkit-user-select: none;
+				margin-left: auto;
+				margin-right: 30px;
+				position: relative;
+				font-size: 40px;
+			}
+		}
+		#mobile-nav {
+			display:none;
+			text-align: right;
+			background-color: transparent;
+			padding-right: 35px;
+			background-color: $redcolor;
+			// a {
+			// 	color: black;
+			// }
+		}
+	}
+	// @media (max-width: 600px){
+	// 	li {display: block;}
+	// }
 }
+#header-date{
+	text-align: right;
+}
+
+.disabled_link { color: white; font-style: italic; }
 #header_crest {
-	background: url(/kpl_crest.png) no-repeat;
+	background: url(/kpl_crest.png) no-repeat center center;
 	// background-size: contain;
 	background-size: 165px auto;
 	background-position: 10px 0;

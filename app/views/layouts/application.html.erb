@@ -10,24 +10,63 @@
 <body>
 <% if user_signed_in? %>
   <header id="header_wrapper">
-    <div class="units-row" id="navbar">
-        <ul class="unit-push-right unit-25">
+    <div class="units-row units-mobile-50" id="navbar">
+      <div class="unit-60">&nbsp; </div>
+        <!-- <ul class="unit-push-right unit-25"> -->
+      <div class="unit-40">
+        <ul id="desktop-nav">
           <li><%= link_to "#{current_user.fname}", root_path %></li>
+            <% if can? :create, @app %>
+              <!-- if user has already applied -->
+              <% if @already_applied == current_user.id %>
+                <li class="disabled_link">Application received.</li>
+              <!-- if app deadline is past or if current user has already submitted app for current semester -->
+              <% elsif @app_deadline_past %>
+                <li class="disabled_link">Applications are closed.</li>
+                <!-- if user status is active -->
+              <% else %>
+                <li> <%= link_to "Apply", new_user_app_path(current_user) %> </li>
+              <% end %>
+            <% end %>
           <li><%= link_to "my account", edit_user_registration_path %> </li>
           <li><%= link_to "sign out", destroy_user_session_path, method: :delete %></li>
         </ul>
-    </div>
-    <div class="units-row end">
-      <div class="unit-push-right unit-25">
-      <%= @date %>
-        <% if can? :manage, :chair %>
-            <br/>
-            <%= link_to "Chairmember Access", users_chair_path %>
-        <% end %>
+
+        <div id="ddmenu">
+          <div id="menu-icon">&#9776;</div>
+            <ul id="mobile-nav">
+              <li><%= link_to "#{current_user.fname}", root_path %></li>
+                <% if can? :create, @app %>
+                  <!-- if user has already applied -->
+                  <% if @already_applied == current_user.id %>
+                    <li class="disabled_link">Application received.</li>
+                  <!-- if app deadline is past or if current user has already submitted app for current semester -->
+                  <% elsif @app_deadline_past %>
+                    <li class="disabled_link">Applications are closed.</li>
+                    <!-- if user status is active -->
+                  <% else %>
+                    <li> <%= link_to "Apply", new_user_app_path(current_user) %> </li>
+                  <% end %>
+                <% end %>
+              <li><%= link_to "my account", edit_user_registration_path %> </li>
+              <li><%= link_to "sign out", destroy_user_session_path, method: :delete %></li>
+            </ul>
+        </div>
+
       </div>
     </div>
 
-    <div class="units-row end units-mobile-50">
+    <div class="units-row end">
+        <div class="unit-100" id="header-date">
+        <%= @date %>
+          <%# if can? :manage, :chair %>
+              <!-- <br/> -->
+              <%#= link_to "Chairmember Access", users_chair_path %>
+          <%# end %>
+        </div>
+    </div>
+
+    <div class="units-row end">
       <div class="unit-push-10 unit-25" id="header_crest">
         <div id="crest_title">phoenix scholarship</div>
       </div>
