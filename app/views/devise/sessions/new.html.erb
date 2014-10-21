@@ -1,12 +1,12 @@
 <div id="landing_page">
 
-  <div id="kpl_wrapper">
-  	<h1 id="kpl_main">KPL</h1>
-  	<p id="subline">upsilon chapter's</p>
-  	<p id="subline2">phoenix scholarship</p>
+  <div class="units-row end"id="kpl_wrapper">
+  	<h1 class="unit-100 end" id="kpl_main">KPL</h1>
+  	<p class="unit-100 end" id="subline">upsilon chapter's</p>
+  	<p class="unit-100 end" id="subline2">phoenix scholarship</p>
   </div>
 
-  <div id ="sign_in_form">
+  <div class="units-row end" id ="sign_in_form">
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="email"><%= f.label :email %>

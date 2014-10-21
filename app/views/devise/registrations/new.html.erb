@@ -1,40 +1,68 @@
-<h2>Sign up</h2>
-<div class="signup_edit_form">
+
+<div class="signup_edit_form units-row">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
-   <div class="form_section" id="left_form_section">
-      <div><%= f.label :nickname %><br />
-      <%= f.text_field :nickname, autofocus: true %></div>
-
-      <div><%= f.label :first_name %><br />
-      <%= f.text_field :fname %></div>
-
-      <div><%= f.label :last_name %><br />
-      <%= f.text_field :lname %></div>
-
-      <div><%= f.label :greek_class %><br />
-      Upsilon <%= f.select(:greek_class, [['Alpha'], ['Beta'], ['Gamma'], ['Delta'], ['Epsilon'], ['Zeta'], ['Eta'], ['Theta'], ['Iota'], ['Lambda'], ['Mu'], ['Nu']]) %></div>
-
-      <div><%= f.label :crossing_season %><br />
-      <%= f.text_field :xseason, placeholder: "ex: Spring 08" %></div>
-
-      <div>
-      <%= f.label :status %><br/>
-      <%= f.select(:status, [['Active'], ['Alumnus']]) %> </div>
+   <div class="form_section unit-50" id="left_form_section">
+      <div class="units-row">
+        <div class="unit-100">
+          <%= f.label :nickname %><br />
+          <%= f.text_field :nickname, autofocus: true %>
+        </div>
+      </div>
+      <div class="units-row">
+        <div class="unit-100">
+          <%= f.label :first_name %><br />
+          <%= f.text_field :fname %>
+        </div>
+      </div>
+      <div class="units-row">
+        <div class="unit-100">
+          <%= f.label :last_name %><br />
+          <%= f.text_field :lname %>
+        </div>
+      </div>
+      <div class="units-row">
+        <div class="unit-100">
+          <%= f.label :greek_class %><br />
+          Upsilon <%= f.select(:greek_class, [['Alpha'], ['Beta'], ['Gamma'], ['Delta'], ['Epsilon'], ['Zeta'], ['Eta'], ['Theta'], ['Iota'], ['Lambda'], ['Mu'], ['Nu']]) %>
+        </div>
+      </div>
+      <div class="units-row">
+        <div class="unit-100">
+          <%= f.label :crossing_season %><br />
+          <%= f.text_field :xseason, placeholder: "ex: Spring 08" %>
+        </div>
+      </div>
+      <div class="units-row">
+        <div class="unit-100">
+          <%= f.label :status %><br/>
+          <%= f.select(:status, [['Active'], ['Alumnus']]) %>
+        </div>
+      </div>
     </div>
-  <div class="form_section">
-      <div><%= f.label :email %><br />
-      <%= f.email_field :email%></div>
 
-      <div><%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "off" %></div>
-
-      <div><%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
+  <div class="form_section unit-50">
+    <div class="units-row">
+      <div class="unit-100">
+        <%= f.label :email %><br />
+        <%= f.email_field :email%>
+      </div>
+    </div>
+    <div class="units-row">
+      <div class="unit-100">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+    </div>
+    <div class="units-row">
+      <div class="unit-100">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+    </div>
       <div><%= f.submit "Sign up" %></div>
     <% end %>
   </div>
 </div>
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>

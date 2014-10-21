@@ -1,103 +1,103 @@
 $redcolor: #CE0000;
 $standardfont: 'Open Sans', Arial, sans-serif;
 
-#edit_user_wrapper{
-	width: 900px;
-	margin-top: 30px;
-	@media (max-width: 630px){
-		width: 300px;
-	}
-}
+// #edit_user_wrapper{
+// 	width: 900px;
+// 	margin-top: 30px;
+// 	@media (max-width: 630px){
+// 		width: 300px;
+// 	}
+// }
 
-.signup_edit_form {
-	width: 580px;
-	margin: 10px auto;
-	font-size: .8em;
-	float:left;
-	@media (max-width: 630px){
-		width: 300px;
-	}
-	#left_form_section {
-		float:left;
-	}
-	#right_form_section {
-		margin-right: 100px;
-	}
-	.form_section {
-		margin: auto;
-		width: 210px;
-		position: relative;
-		label {
-			color: $redcolor;
-		}
-		@media (max-width: 630px) {
-			margin-left: 30px;
-		}
-	}
+// .signup_edit_form {
+// 	width: 580px;
+// 	margin: 10px auto;
+// 	font-size: .8em;
+// 	float:left;
+// 	@media (max-width: 630px){
+// 		width: 300px;
+// 	}
+// 	#left_form_section {
+// 		float:left;
+// 	}
+// 	#right_form_section {
+// 		margin-right: 100px;
+// 	}
+// 	.form_section {
+// 		margin: auto;
+// 		width: 210px;
+// 		position: relative;
+// 		label {
+// 			color: $redcolor;
+// 		}
+// 		@media (max-width: 630px) {
+// 			margin-left: 30px;
+// 		}
+// 	}
 
-	div {
-		margin-bottom: 10px;
-	}
-	input {
-		margin-top: 6px;
-		padding: 5px;
-		width: 150px;
-		border: 1px solid black;
-		&:focus {
-			border:1px solid $redcolor;
-			outline: none;
-		}
-	}
+// 	div {
+// 		margin-bottom: 10px;
+// 	}
+// 	input {
+// 		margin-top: 6px;
+// 		padding: 5px;
+// 		width: 150px;
+// 		border: 1px solid black;
+// 		&:focus {
+// 			border:1px solid $redcolor;
+// 			outline: none;
+// 		}
+// 	}
 
-}
+// }
 
-#delete_account{
-	clear:both;
-	text-align: center;
-	position: relative;
-	width: 280px;
-	height: 50px;
-	margin: 0 auto;
-	margin-top: 50px;
-	line-height: 140%;
-	#delete_account_button {
-		width: 200px;
-		border: 1px solid black;
-		background-color: #ccc;
-		color: black;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		border-radius: 2px;
+// #delete_account{
+// 	clear:both;
+// 	text-align: center;
+// 	position: relative;
+// 	width: 280px;
+// 	height: 50px;
+// 	margin: 0 auto;
+// 	margin-top: 50px;
+// 	line-height: 140%;
+// 	#delete_account_button {
+// 		width: 200px;
+// 		border: 1px solid black;
+// 		background-color: #ccc;
+// 		color: black;
+// 		text-transform: uppercase;
+// 		letter-spacing: 1px;
+// 		border-radius: 2px;
 
-	}
-}
+// 	}
+// }
 
-.donation_record {
-	float:left;
-	margin: 0 auto;
-	width: 280px;
-	height: 100%;
-	border: 2px solid $redcolor;
-	text-align: center;
-	margin-bottom: 50px;
-	.table_title {
-		padding: 5px;
-		color: white;
-		text-transform: uppercase;
-		background-color: $redcolor;
-		border-bottom: 1px solid $redcolor;
-	}
-	.donation_row{
-		width: 100%;
-		clear:both;
-		div {
-			height: 25px;
-			border-bottom: 1px dashed #aaa;
-			float:left
-		}
-		.date_column, .amt_column{
-			width: 50%;
-		}
-	}
+// .donation_record {
+// 	float:left;
+// 	margin: 0 auto;
+// 	width: 280px;
+// 	height: 100%;
+// 	border: 2px solid $redcolor;
+// 	text-align: center;
+// 	margin-bottom: 50px;
+// 	.table_title {
+// 		padding: 5px;
+// 		color: white;
+// 		text-transform: uppercase;
+// 		background-color: $redcolor;
+// 		border-bottom: 1px solid $redcolor;
+// 	}
+// 	.donation_row{
+// 		width: 100%;
+// 		clear:both;
+// 		div {
+// 			height: 25px;
+// 			border-bottom: 1px dashed #aaa;
+// 			float:left
+// 		}
+// 		.date_column, .amt_column{
+// 			width: 50%;
+// 		}
+// 	}
 
-}
+// }

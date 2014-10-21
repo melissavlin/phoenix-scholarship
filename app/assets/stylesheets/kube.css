@@ -258,7 +258,8 @@ a:focus,
 a:hover {
   /*color: #d70a16;*/
   /*text-decoration: underline;*/
-  font-style: italic;
+  /*font-style: italic;*/
+  border-bottom: 1px solid white;
 }
 /* =Headings
 -----------------------------------------------------------------------------*/
@@ -1414,22 +1415,22 @@ input.input-error,
 textarea.input-error,
 select.input-error,
 .input-error {
-  border-color: #d70a16;
-  box-shadow: 0 0 0 2px rgba(215, 10, 22, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2) inset;
+  /*border-color: #d70a16;*/
+  /*box-shadow: 0 0 0 2px rgba(215, 10, 22, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2) inset;*/
 }
 input.input-success,
 textarea.input-success,
 select.input-success,
 .input-success {
-  border-color: #159776;
-  box-shadow: 0 0 0 2px rgba(21, 151, 118, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2) inset;
+  /*border-color: #159776;*/
+  /*box-shadow: 0 0 0 2px rgba(21, 151, 118, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2) inset;*/
 }
 input.input-gray,
 textarea.input-gray,
 select.input-gray,
 .input-gray {
-  border-color: #ccc;
-  box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2) inset;
+  /*border-color: #ccc;*/
+  /*box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2) inset;*/
 }
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -1447,8 +1448,8 @@ input[type="search"]:focus,
 input[type="datetime-local"]:focus,
 textarea:focus {
   outline: none;
-  border-color: #5ca9e4;
-  box-shadow: 0 0 0 2px rgba(70, 161, 231, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2) inset;
+  /*border-color: #5ca9e4;*/
+  /*box-shadow: 0 0 0 2px rgba(70, 161, 231, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2) inset;*/
 }
 input.input-search,
 input[type="search"] {
