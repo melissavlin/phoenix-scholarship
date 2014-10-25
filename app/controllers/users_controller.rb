@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     if vote_deadline != nil
       @voting_closed = Date.today >= vote_deadline
     end
-    @last_awardee = App.where(award:true).last.user.fname
+    # @last_awardee = App.where(award:true).last.user.fname
     last_semester = Semester.all[-2]
     if last_semester.app_deadline.month >= 8
       @last_scholarship_season = "Spring #{last_semester.app_deadline.year} Scholarship"
