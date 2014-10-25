@@ -45,7 +45,11 @@
 						<p class="end"><%= "When application voting opens, you have until <hilite>#{print_date(@semester.vote_deadline)}</hilite> to place your vote.".html_safe %></p>
 					<% end %>
 				<% end %>
-				<em>If you have any questions, you can contact the current chairwoman, [name], at [email].</em>
+				<p>If you have any questions, you can contact the current chairwoman, <hilite>Melissa</hilite>, at <hilite>melissavlin@gmail.com</hilite>.</p>
+
+				<div id="dev_note">
+					<p>Note that this is the beta launch. If there are any issues or suggestions, please email me, Melissa (also current chairwoman). If applicable, please include a screenshot of the browser window. Thank you!</p>
+				</div>
 			</div>
 
 			<% if can? :manage, Donation %>

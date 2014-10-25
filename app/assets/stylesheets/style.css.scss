@@ -411,6 +411,10 @@ hilite { color: $redcolor; }
 	margin-bottom: 40px;
 
 	// HOMEPAGE MAIN CONTENT STYLING
+	#dev_note {
+		margin-top: 20px;
+		font-style: italic;
+	}
 	#notice {
 		// background-color: #eee;
 		padding-left: 20px;
