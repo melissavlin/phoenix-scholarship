@@ -27,12 +27,14 @@ class UsersController < ApplicationController
       @voting_closed = Date.today >= vote_deadline
     end
     # @last_awardee = App.where(award:true).last.user.fname
-    last_semester = Semester.all[-2]
-    if last_semester.app_deadline.month >= 8
-      @last_scholarship_season = "Spring #{last_semester.app_deadline.year} Scholarship"
-    else
-      @last_scholarship_season = "Fall #{last_semester.app_deadline.year} Scholarship"
-    end
+
+    # DISABLED UNTIL NEXT SEMESTER
+    # last_semester = Semester.all[-2]
+    # if last_semester.app_deadline.month >= 8
+    #   @last_scholarship_season = "Spring #{last_semester.app_deadline.year} Scholarship"
+    # else
+    #   @last_scholarship_season = "Fall #{last_semester.app_deadline.year} Scholarship"
+    # end
 
     # authorize! :manage, :chair
     @semester = Semester.new
