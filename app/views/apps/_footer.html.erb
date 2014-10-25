@@ -1,0 +1,38 @@
+
+
+  <div class="push"></div>
+
+</div>
+<footer class="footer">
+
+<div>
+  <ul>
+    <% if can? :manage, :chair %>
+    <li> <%= link_to "Application Archive", apps_archive_path %> </li>
+    <% end %>
+
+    <% if can? :read, @all_apps %>
+        <li> <%= link_to "Current Applications", apps_review_path %> </li>
+    <% end %>
+
+    <% if can? :create, @app %>
+        <li> <%= link_to "Apply", new_user_app_path(current_user) %> </li>
+    <% end %>
+      <!-- <li> <%= link_to "Apply", new_user_app_path(current_user) %> </li> -->
+      <li> <%#= link_to "My Application Archive", user_apps_path(current_user) %> </li>
+
+    <li> <%#= link_to "Member List", users_roster_path %> </li>
+
+  </ul>
+
+</div>
+
+<div class="icon_links">
+  <ul>
+  <li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
+  <li><a href="https://www.facebook.com/groups/2200209376/" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></li>
+  <li><a href="http://kplsisters.org" target="_blank"><i class="fa fa-institution fa-2x"></i></a></li>
+  </ul>
+</div>
+
+</footer>

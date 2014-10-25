@@ -1,5 +1,9 @@
 
 <div class="signup_edit_form units-row">
+  <div class="unit-100" id="new_account_header">
+    <h1>new account</h1>
+  </div>
+
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
    <div class="form_section unit-50" id="left_form_section">
@@ -50,7 +54,7 @@
     </div>
     <div class="units-row">
       <div class="unit-100">
-        <%= f.label :password %><br />
+        <%= f.label :password %><span> *min 8 characters</span><br />
         <%= f.password_field :password, autocomplete: "off" %>
       </div>
     </div>
@@ -61,6 +65,8 @@
       </div>
     </div>
       <div><%= f.submit "Sign up" %></div>
+      <br>
+      <p><span>*Note all fields are required.</span></p>
     <% end %>
   </div>
 </div>

@@ -1,4 +1,5 @@
 $redcolor: #CE0000;
+$greycolor: #ddd;
 $standardfont: 'Open Sans', Arial, sans-serif;
 
 // --------- RESET CSS ----------------
@@ -50,10 +51,13 @@ table {
 }
 
 // ------------ END RESET CSS ----------
-// USER HOME PAGE
+// USER HOME PAGE, GLOBAL STYLE
 // HEADER NAV BAR
 hilite { color: $redcolor; }
 
+.date_ref {
+	color: $redcolor;
+}
 // ------- LANDING PAGE ---------------
 
 #landing_page {
@@ -206,11 +210,11 @@ hilite { color: $redcolor; }
 
 
 #edit_user_wrapper{
-	width: 900px;
-	margin-top: 30px;
-	@media (max-width: 630px){
-		width: 300px;
-	}
+	// width: 900px;
+	// margin-top: 30px;
+	// @media (max-width: 630px){
+	// 	width: 300px;
+	// }
 }
 
 
@@ -228,15 +232,36 @@ hilite { color: $redcolor; }
 	// #right_form_section {
 	// 	margin-right: 100px;
 	// }
+	#new_account_header {
+		text-align: center;
+		border-bottom: 1px solid $redcolor;
+		padding-bottom: 10px;
+		margin-bottom: 20px;
+		h1 {
+			color: $redcolor;
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 5em;
+			@media (max-width: 630px){
+				font-size: 3em;
+			}
+		}
+	}
 	.form_section {
 		margin-left: 0;
+		padding-left: 50px;
 		// width: 210px;
 		// position: relative;
 		label {
 			color: $redcolor;
 		}
+		span {
+			font-style: italic;
+			color: $redcolor;
+			font-size: .8em;
+		}
 		@media (max-width: 630px) {
-			// margin-left: 30px;
+			padding-left: 10px;
 		}
 	}
 
@@ -257,19 +282,9 @@ hilite { color: $redcolor; }
 }
 
 #delete_account{
-	clear:both;
 	text-align: center;
-	position: relative;
-	width: 280px;
-	height: 50px;
-	margin: 0 auto;
-	margin-top: 50px;
 	line-height: 140%;
 	#delete_account_button {
-		width: 200px;
-		border: 1px solid black;
-		background-color: #ccc;
-		color: black;
 		text-transform: uppercase;
 		letter-spacing: 1px;
 		border-radius: 2px;
@@ -278,13 +293,14 @@ hilite { color: $redcolor; }
 }
 
 .donation_record {
-	float:left;
-	margin: 0 auto;
+	// float:left;
+	// margin: 0 auto;
+	margin-bottom: 40px;
 	width: 280px;
-	height: 100%;
+	// height: 100%;
 	border: 2px solid $redcolor;
 	text-align: center;
-	margin-bottom: 50px;
+	// margin-bottom: 50px;
 	.table_title {
 		padding: 5px;
 		color: white;
@@ -293,15 +309,18 @@ hilite { color: $redcolor; }
 		border-bottom: 1px solid $redcolor;
 	}
 	.donation_row{
-		width: 100%;
-		clear:both;
-		div {
-			height: 25px;
-			border-bottom: 1px dashed #aaa;
-			float:left
-		}
+		padding: 3px 0;
+		border-bottom: 1px dashed #aaa;
+	// 	width: 100%;
+	// 	clear:both;
+	// 	div {
+	// 		height: 25px;
+	// 		border-bottom: 1px dashed #aaa;
+	// 		float:left
+	// 	}
 		.date_column, .amt_column{
-			width: 50%;
+			// width: 50%;
+			margin-bottom: 0 !important;
 		}
 	}
 
@@ -355,17 +374,8 @@ hilite { color: $redcolor; }
 			background-color: transparent;
 			padding-right: 35px;
 			background-color: $redcolor;
-			// a {
-			// 	color: black;
-			// }
 		}
 	}
-	// @media (max-width: 600px){
-	// 	li {display: block;}
-	// }
-}
-#header-date{
-	text-align: right;
 }
 
 .disabled_link { color: white; font-style: italic; }
@@ -395,25 +405,23 @@ hilite { color: $redcolor; }
 	}
 }
 
-#content_wrapper {
+.content_wrapper {
 	position: relative;
-	top: 130px;
+	margin-top: 180px;
+	margin-bottom: 40px;
 
 	// HOMEPAGE MAIN CONTENT STYLING
-
-	#recent_award_recipient {
-		text-align: center;
-		text-transform: uppercase;
-		#awardee_name {
-			color: $redcolor;
-		}
-	}
-	
 	#notice {
 		// background-color: #eee;
 		padding-left: 20px;
 		padding-right: 20px;
+		#header-date{
+			text-align: right;
+			margin-bottom: 20px;
+		}
 		.notice_body {
+			line-height: 1.4em;
+			margin-top: 20px;
 			margin-left: 35px;
 			margin-bottom: 40px;
 			// border: 1px solid $redcolor;
@@ -424,9 +432,20 @@ hilite { color: $redcolor; }
 			.notice_title {
 				text-align: center;
 				background-color: $redcolor;
-				margin-bottom: 7px;
+				margin-bottom: 15px;
 				color: white;
 				border-radius: 2px;
+				padding: 3px 0;
+			}
+			#recent_award_recipient {
+				background-color: $greycolor;
+				text-align: center;
+				text-transform: uppercase;
+				margin-bottom: 20px;
+				padding: 10px 0;
+				#awardee_name {
+					color: $redcolor;
+				}
 			}
 			#donation_wrapper {
 				text-align: center;
@@ -440,3 +459,243 @@ hilite { color: $redcolor; }
 	}
 
 }
+
+
+// CHAIRMEMBER CONTROLS
+
+	.chair_section {
+		width: 70%;
+		margin-bottom: 30px;
+		@media(max-width:450px){
+			width: 100%;
+		}
+		.chair_header {
+			text-align: center;
+			background-color: $greycolor;
+			margin-bottom: 10px;
+			padding: 2px 0;
+		}
+	}
+	#deadline_wrapper {
+		text-align: center;
+
+		form#new_semester{
+			margin-top: 10px;
+			.deadline_box {
+				margin-bottom: 5px;
+			}
+
+		}
+	}
+	#votecount_wrapper{
+
+		#current_applicants {
+			width: 270px;
+			margin: 0 auto;
+		}
+		.award_button_wrapper{
+			text-align: center;
+			margin-top: 5px;		
+		}
+}
+// }
+
+
+// CHAIRMEMBER EMAIL SECTION
+
+#email_wrapper{
+
+	margin-bottom: 50px;
+	form {
+		margin:10px;
+		.email_field{
+			margin: 5px 0;
+		}
+		input,textarea {
+			margin-top: 5px;
+		}
+	}
+		input, select#rcpt {
+			border: 1px solid $greycolor;
+			width: 200px;
+			&:focus {
+				outline: none;
+				border: 1px solid $redcolor;
+			}
+			&:active {
+				outline: none;
+			}
+		}
+		input#subject {
+			width: 100%;
+		}
+		textarea#msg {
+			// width: 400px;
+			border: 1px solid $greycolor;
+			height: 160px;
+			&:focus {
+				outline: none;
+				border: 1px solid $redcolor;
+			}
+			&:active {
+				outline: none;
+			}
+			@media (max-width: 600px) {
+				width: 300px;
+				height: 250px;
+			}
+		}
+		#button_wrapper {
+			text-align: right;
+			#submit_button {
+				background-color: white;
+				color: $redcolor;
+				border-radius: 2px;
+				&:hover{
+					background-color: #eee;
+				}
+			}
+		}
+
+}
+// CHAIRMEMBER DONATION TABLE
+
+
+.table_wrapper {
+	border: 2px solid $redcolor;
+	width: 606px;
+	height: 200px;
+	overflow: scroll;
+	margin-bottom: 30px;
+	overflow-x:hidden;
+	text-align: center;
+	.table_title {
+		padding: 5px;
+		color: white;
+		text-transform: uppercase;
+		background-color: $redcolor;
+		border-bottom: 1px solid $redcolor;
+	}
+	#chair_donation_record {
+		width: 600px;
+		.donation_row{
+			height: 28px;
+			width: 100%;
+			clear:both;
+			border-bottom: 1px dashed #aaa;
+			div {
+				margin-top: 5px;
+				float:left;
+			}
+		}
+		.received_donation_button{
+			font-size: 12px;
+			padding: 0 10px;
+			text-decoration: none;
+			border: 2px solid $redcolor;
+			letter-spacing: 1px;
+			border-radius: 3px;
+			&:hover{
+				background-color: #eee;
+			}
+		}
+		.donation_complete_button {
+			color: $redcolor;
+		}
+		@media (max-width: 600px) {
+			width: 400px;
+		}
+		.date_column {
+			width: 20%;
+		}
+		.name_column {
+			width: 40%;
+		}
+		.amt_column {
+			width: 15%;
+		}
+		.status_column {
+			width: 25%;
+		}
+	}
+	@media (max-width: 600px) {
+		width: 380px;
+		height: 450px;
+	}	
+}
+
+.table_wrapper::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+
+}
+
+.table_wrapper::-webkit-scrollbar{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+.table_wrapper::-webkit-scrollbar-thumb{
+	background-color: $redcolor;
+}
+
+
+
+
+
+// FOOTER
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+.wrapper {
+	min-height: 100%;
+	height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+	height: 100%;
+	margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+	height: 100px; /* .push must be the same height as .footer */
+}
+
+/*
+
+Sticky Footer by Ryan Fait
+http://ryanfait.com/
+
+*/
+
+footer {
+	line-height: 1.5em;
+	text-align: center;
+	font-size: .9em;
+	padding: 20px 40px;
+	background-color: $redcolor;
+	color: white;
+	a {
+		color: white;
+	}
+	ul{
+		margin-bottom: 10px;
+	}
+	li{
+		display: inline-block;
+		margin-right: 15px;
+	}
+	.icon_links {
+		a {
+			border: none;
+			&:hover{
+				color: $greycolor;
+			}
+		}
+	}
+}
+
+
+
+
+
+

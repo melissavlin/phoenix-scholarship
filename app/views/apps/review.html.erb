@@ -1,3 +1,11 @@
+<div class="content_wrapper">
+
+
+<% if @voting_closed %>
+  <p class="apply_notice"> Voting has closed. </p>
+<% else %>
+
+     
 
 	<div class="review_app_wrapper">
 
@@ -24,4 +32,10 @@
 
 
 			<%= render partial: 'apps_for_review', collection: @all_apps  %>
-		
+
+<% end %>
+
+
+</div>
+
+<%= render partial: 'footer' %>

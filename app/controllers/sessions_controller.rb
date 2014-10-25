@@ -4,4 +4,6 @@ class SessionsController < Devise::SessionsController
 		@home_page = true
 	end
 
+
+
 end

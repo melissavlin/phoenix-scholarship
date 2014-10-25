@@ -1,3 +1,15 @@
+      
+<div class="content_wrapper">
+      <!-- if user has already applied -->
+
+      <% if @already_applied == current_user.id %>
+        <p class="apply_notice"> Application received. </p>
+      <!-- if app deadline is past or if current user has already submitted app for current semester -->
+      <% elsif @app_deadline_past %>
+        <p class="apply_notice"> Applications are closed, the deadline has past.</p>
+        <!-- if user status is active -->
+      <% else %>
+       
 
 
 <div id="application_form">
@@ -94,3 +106,11 @@
 
 </div>
 
+<% end %>
+
+</div>
+
+
+
+
+<%= render partial: 'footer' %>

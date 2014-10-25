@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <link href='http://fonts.googleapis.com/css?family=Playfair+Display:700italic|Open+Sans:400,800|Gentium+Book+Basic:700italic,400' rel='stylesheet' type='text/css'>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -17,16 +18,7 @@
         <ul id="desktop-nav">
           <li><%= link_to "#{current_user.fname}", root_path %></li>
             <% if can? :create, @app %>
-              <!-- if user has already applied -->
-              <% if @already_applied == current_user.id %>
-                <li class="disabled_link">Application received.</li>
-              <!-- if app deadline is past or if current user has already submitted app for current semester -->
-              <% elsif @app_deadline_past %>
-                <li class="disabled_link">Applications are closed.</li>
-                <!-- if user status is active -->
-              <% else %>
-                <li> <%= link_to "Apply", new_user_app_path(current_user) %> </li>
-              <% end %>
+              <li> <%= link_to "apply", new_user_app_path(current_user) %> </li>
             <% end %>
           <li><%= link_to "my account", edit_user_registration_path %> </li>
           <li><%= link_to "sign out", destroy_user_session_path, method: :delete %></li>
@@ -56,15 +48,6 @@
       </div>
     </div>
 
-    <div class="units-row end">
-        <div class="unit-100" id="header-date">
-        <%= @date %>
-          <%# if can? :manage, :chair %>
-              <!-- <br/> -->
-              <%#= link_to "Chairmember Access", users_chair_path %>
-          <%# end %>
-        </div>
-    </div>
 
     <div class="units-row end">
       <div class="unit-push-10 unit-25" id="header_crest">
@@ -80,8 +63,9 @@
     <p class="notice end"><%= notice %></p>
     <p class="alert end"><%= alert %></p>
 
-<%= yield %>
+  <div class="wrapper">
 
+    <%= yield %>
 
 </body>
 </html>

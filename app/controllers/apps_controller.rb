@@ -23,6 +23,19 @@ class AppsController < ApplicationController
         @scholarship_season = "Fall #{Date.today.year}"
       end
     end
+    
+    app_deadline = Semester.last.app_deadline
+    if app_deadline != nil
+      @app_deadline_past= Date.today >= app_deadline
+    end
+    # check if current user submitted an app already, get all apps where open = true
+    if current_user.status == "Active"
+      open_apps = App.where(open:true)
+      @user_id = User.find(current_user.id).id
+      if open_apps.find_by(user_id:@user_id)
+        @already_applied = open_apps.find_by(user_id:@user_id).user_id
+      end
+    end
   end
 
   def create

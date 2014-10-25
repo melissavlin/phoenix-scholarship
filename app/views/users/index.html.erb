@@ -1,12 +1,16 @@
-<div id="content_wrapper">
-<div class="units-row" id="recent_award_recipient">
-	<h4> Congratulations to the <%= "#{@last_scholarship_season} recipient"%></h4>
-	<h3 id="awardee_name"> <%= @last_awardee %> </h3> 
-</div>
+<div class="content_wrapper">
 
 <!-- WELCOME LETTER -->
 <div class="units-row">
 	<div class="unit-centered unit-60" id="notice">
+			<div id="header-date">
+				<p> <%= @date.to_formatted_s(:long) %></p>
+				 <%# if can? :manage, :chair %>
+				     <!-- <br/> -->
+				     <%#= link_to "Chairmember Access", users_chair_path %>
+				 <%# end %>
+			</div>
+
 			<% if can? :read, @all_apps %>
 				<p><%= "Hello Boardmember," %></p>
 			<% else %>
@@ -15,8 +19,14 @@
 
 			<div class="notice_body">
 				<div class="notice_title">Announcements</div>
+
+				<div id="recent_award_recipient">
+					<h4> Congratulations to the <%= "#{@last_scholarship_season} recipient"%></h4>
+					<h3 id="awardee_name"> <%= @last_awardee %> </h3> 
+				</div>
+
 				<% if @semester.app_deadline == nil %>
-					<p class="end"> No deadline is set yet for the next scholarship.</p>
+					<p class="end"> No deadline is set yet for the next scholarship. </p>
 
 				<% else %>
 					<% if can? :create, @app %>
@@ -42,7 +52,7 @@
 
 				<div class="notice_body">
 					<div class="notice_title">Contribute to Phoenix Scholarship</div>
-					<p class="end">Please show your support for our actives by contributing to our scholarship funds. Only sisters in the scholarship committee may have input on the recipient. To join the committe and be a board member, please make a contribution of any amount.</p>
+					<p class="end">Please show your support for our actives by contributing to our scholarship funds. Only sisters in the scholarship committee may have input on the recipient. To join the committee and be a board member, please make a contribution of any amount.</p>
 
 						<!-- contribution request -->
 						<div id="donation_wrapper">
@@ -72,7 +82,7 @@
 					<!-- instructions for chairperson -->
 				</div>
 
-				<div id="chair_page_top_wrapper">
+				<!-- <div id="chair_page_top_wrapper"> -->
 
 					<div class="chair_section" id="deadline_wrapper">
 					
@@ -85,10 +95,14 @@
 							<%= "Vote deadline: <span class='date_ref'>#{@current_semester.vote_deadline.to_formatted_s(:long)}</span>".html_safe %> <br/>
 						<% end %>
 						<%= form_for @semester, url: set_deadline_path do |f| %>
+						<div class="deadline_box">
 							<p>Set Application Deadline: </p>
 								<p><%= f.date_select :app_deadline, order: [:month, :day, :year], end_year: Date.today.year + 1, start_year: Date.today.year %> </p>
+						</div>
+						<div class="deadline_box">
 							<p>Set Voting Deadline:</p>
 								<p><%= f.date_select :vote_deadline, order: [:month, :day, :year], end_year: Date.today.year + 1, start_year: Date.today.year %> </p>
+						</div>
 
 								<%= f.submit "Set Deadlines" %>
 						<% end %>
@@ -96,31 +110,36 @@
 						<!-- vote counts of current applicants -->
 					<div class="chair_section" id="votecount_wrapper">
 						<p class="chair_header" id="chair_header_apps">Applicants</p>
+						<div id="current_applicants">
 							<% x = 1 %>
 							<% @open_apps.each do |a| %>
 								<%= "#{x}. #{a.user.fname} '#{a.user.nickname}' (votes: #{a.vote_count})" %> <br/>
 								<% x+=1 %>
 							<% end %>
-
+						</div>
 					<!-- if the vote deadline of semester.last is past today's date, enable the declare recipient button  -->
+					<div class="award_button_wrapper">
 						<% if @check_vote_deadline %> 
-							<p class="vote_notice">Voting is now closed </p>
+
+							<hilite>Voting is now closed </hilite><br/>
 							<%= form_tag(declare_awardee_path, method: "post") do %>
 									<%= submit_tag ("Declare Scholarship Awardee"), id: "award_button" %>
 							<% end %>
 
 						<% else %>
-							<p class="vote_notice"> Voting is still open.</p>
+							<hilite> Voting is still open.</hilite><br/>
 							<%= button_tag "Declare Scholarship Awardee", id: "award_button", disabled: true %>
 						<% end %>
-
+					</div>
 					</div>
 
-				</div>
+				<!-- </div> -->
 
-				<div id="account_approval_wrapper">
-				<p>Member Requests</p>
-				<p>New members requests waiting for approval.</p>
+
+
+				<div class="chair_section" id="account_approval_wrapper">
+				<p class="chair_header">Member Requests</p>
+				<p>New member requests waiting for approval.</p>
 					<% @unapproved_users.each do |u| %>
 						<%= u.email %> | <%= link_to "Approve", approve_user_path(u) %><br/>
 					<% end %>
@@ -128,18 +147,20 @@
 
 
 				<div id="email_wrapper">
-					<div id="email_body">
-						<div id="email_notice">
-							<p> Send reminder emails to any group </p>
-						</div>
-						<h3> email to </h3>
+					<!-- <div id="email_body"> -->
+						<!-- <div id="email_notice"> -->
+							<p class="notice_title"> Email </p>
+						<!-- </div> -->
 						<%= form_tag(send_msg_path, method: "post") do %>
+						<div class="email_field">
+							<label>Send to </label>
 							<%= select_tag(:rcpt, options_for_select([['Actives', 'active'], ['Alumnae', 'alumnae'], ['Boardmembers', 'board'] ,['All', 'all']])) %>
-							<div id="subject_field">
+						</div>
+							<div class="email_field" id="subject_field">
 								<%= label_tag(:subject, "Subject") %><br/>
 								<%= text_field_tag(:subject) %>
 							</div>
-							<div id="msg_field">
+							<div class="email_field" id="msg_field">
 								<%= label_tag(:msg, "Message") %><br/>
 								<%= text_area_tag(:msg) %>
 							</div>
@@ -147,9 +168,19 @@
 								<%= submit_tag ("Send"), id: "submit_button" %>
 							</div>
 						<% end %>
-					</div>
+					<!-- </div> -->
 				</div>
 
+			</div> <!-- end chairmember section -->
+			<% end %>
+
+	</div> <!-- end notice div -->
+
+
+
+</div> <!-- end notice div wrapper -->
+
+<% if can? :manage, :chair %>
 				<!-- DONATION MANAGEMENT -->
 				<div class="table_wrapper">
 					<div id="chair_donation_record">
@@ -164,7 +195,7 @@
 							<% if d.paid == false %>
 								<div class="donation_row">
 									<div class="date_column"><%= print_date(d.created_at) %></div>
-									<div class="name_column"> <%= "#{d.user.fname} #{d.user.lname} aka #{d.user.nickname}" %> </div>
+									<div class="name_column"> <%= "#{d.user.fname} aka #{d.user.nickname}" %> </div>
 									<div class="amt_column"> <%= print_price(d.amt) %> </div>
 									<div class="status_column"> 
 										<%= link_to "Received", receive_donation_path(donation_id: d.id), method: :post, remote: true, class: "received_donation_button", id: d.id %>
@@ -180,63 +211,11 @@
 							<% end %>
 						<% end %>
 					</div>
-				</div>
-			</div> <!-- end chairmember section -->
-			<% end %>
-
-	</div> <!-- end notice div -->
-
-</div> <!-- end notice div wrapper -->
-
-
-<!-- SHOW NEWS (EX: RECIPIENT, DEADLINES, ETC) -->
-<div id="newsbox" class="infobox">
-		<h3 class="index_title" id="new_header_l">NEW</h3>
-		<h3 class="index_title" id="new_header_r">NEWS</h3>
-
+					</div>
+<% end %>
 </div>
 
 
 
-<div id="linkbox" class="infobox">
-	<ul class="sidebar">
-		<% if can? :manage, :chair %>
-		<li> <%= link_to "Chairmember Access", users_chair_path %> </li>
-		<li> <%= link_to "Application Archive", apps_archive_path %> </li>
-		<% end %>
 
-		<% if can? :read, @all_apps %>
-			<% if @voting_closed %>
-				<li> Voting has closed. </li>
-			<% else %>
-				<li> <%= link_to "Review Current Applications", apps_review_path %> </li>
-			<% end %>
-		<% end %>
-
-		<% if can? :create, @app %>
-			<!-- if user has already applied -->
-			<% if @already_applied == current_user.id %>
-				<li> Application received. </li>
-			<!-- if app deadline is past or if current user has already submitted app for current semester -->
-			<% elsif @app_deadline_past %>
-				<li> Applications are closed, the deadline has past.</li>
-				<!-- if user status is active -->
-			<% else %>
-				<li> <%= link_to "Apply", new_user_app_path(current_user) %> </li>
-			<% end %>
-		<% end %>
-
-			<li> <%= link_to "My Applications Archive", user_apps_path(current_user) %> </li>
-
-		<li> <%= link_to "Members", users_roster_path %> </li>
-
-	</ul>
-		<% if can? :manage, :chair %>
-			<p></p>
-		<% elsif can? :manage, Donation %>
-			<p>Note to Alumnae : Each semester, a new committee is gathered to review applications. In order to be a part of this committee, please contribute to the scholarship funds in the left hand side. </p>
-		<% end %>
-
-</div>
-</div>
-
+<%= render partial: 'footer' %>

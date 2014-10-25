@@ -1,3 +1,5 @@
+<div class="content_wrapper">
+
 <h2> Application Archive </h2>
 
 <% @archive.each do |a| %>
@@ -9,5 +11,6 @@
 		<hr/>
 <% end %>
 
+</div>
 
-<%= link_to "Back", root_path %>
+<%= render partial: 'footer' %>

@@ -1,90 +1,143 @@
-<h2>Update your information</h2>
-<div id="edit_user_wrapper">
-    <div class="signup_edit_form">
-      <div class="form_section" id="left_form_section">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-          <%= devise_error_messages! %>
+<div class="content_wrapper">
+  <div id="edit_user_wrapper">
+      <div class="signup_edit_form units-row">
+        <div class="form_section unit-50" id="left_form_section">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= devise_error_messages! %>
 
-          <div><%= f.label :nickname %><br />
-          <%= f.text_field :nickname %></div>
+            <div class="units-row">
+              <div class="unit-100">
+                <%= f.label :nickname %><br />
+                <%= f.text_field :nickname %>
+              </div>
+            </div>
+            <div class="units-row">
+              <div class="units-100">
+                <%= f.label :first_name %><br />
+                <%= f.text_field :fname %>
+              </div>
+            </div>
+            <div class="units-row">
+              <div class="unit-100">
+                <%= f.label :last_name %><br />
+                <%= f.text_field :lname %>
+              </div>
+            </div>
+            <div class="units-row">
+              <div class="unit-100">
+                <%= f.label :greek_class %><br />
+                Upsilon <%= f.select(:greek_class, [['Alpha'], ['Beta'], ['Gamma'], ['Delta'], ['Epsilon'], ['Zeta'], ['Eta'], ['Theta'], ['Iota'], ['Lambda'], ['Mu'], ['Nu']]) %>
+              </div>
+            </div>
+            <div class="units-row">
+              <div class="unit-100">
+                <%= f.label :crossing_season %><br />
+                <%= f.text_field :xseason, placeholder: "ex: Spring 08" %>
+              </div>
+            </div>
+            <div class="units-row">
+              <div class="unit-100">
+                <%= f.label :graduation_year%><br />
+                <%= f.text_field :gradyr %>
+              </div>
+            </div>
+            <div class="units-row">
+              <div class="unit-100">
 
-          <div><%= f.label :first_name %><br />
-          <%= f.text_field :fname %></div>
-
-          <div><%= f.label :last_name %><br />
-          <%= f.text_field :lname %></div>
-
-          <div><%= f.label :greek_class %><br />
-          Upsilon <%= f.select(:greek_class, [['Alpha'], ['Beta'], ['Gamma'], ['Delta'], ['Epsilon'], ['Zeta'], ['Eta'], ['Theta'], ['Iota'], ['Lambda'], ['Mu'], ['Nu']]) %></div>
-
-          <div><%= f.label :crossing_season %><br />
-          <%= f.text_field :xseason, placeholder: "ex: Spring 08" %></div>
-
-           <div><%= f.label :graduation_year%><br />
-          <%= f.text_field :gradyr %></div>
-
-          <div>
-
-          <% if can? :manage, :chair %>
-            <%= f.label :status %><br/>
-            <%= f.select(:status, [['Active'], ['Alumnus']]) %>
-          <% else %>
-            <%= f.label :status %><br/>
-            <span class="form_note">*to change status, please send request to Chairwoman</span><br/>
-            <%= f.select :status, [['Active'], ['Alumnus']], {}, {disabled: true} %>
-          <% end %>
+              <% if can? :manage, :chair %>
+                <%= f.label :status %><br/>
+                <%= f.select(:status, [['Active'], ['Alumnus']]) %>
+              <% else %>
+                <%= f.label :status %><br/>
+                <span class="form_note">*to change status, please send request to Chairwoman</span><br/>
+                <%= f.select :status, [['Active'], ['Alumnus']], {}, {disabled: true} %>
+              <% end %>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="form_section" id="right_form_section">
-          <div><%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true %></div>
+          <div class="form_section unit-50" id="right_form_section">
 
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <div class="units-row">
+            <div class="unit-100">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true %>
+            </div>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+          </div>
+          <div class="units-row">
+            <div class="unit-100">
+              <%= f.label :password %><br/>
+              <span class="form_note">*leave blank if you don't want to change it</span><br />
+                <%= f.password_field :password, autocomplete: "off" %>
+            </div>
+          </div>
+          <div class="units-row">
+            <div class="unit-100">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off" %>
+              </div>
+          </div>
+          <div class="units-row">
+            <div class="unit-100">
+              <%= f.label :current_password %><br/>
+              <span class="form_note">*we need your current password to confirm your changes</span><br />
+              <%= f.password_field :current_password, autocomplete: "off" %>
+              </div>
+          </div>
+            <div><%= f.submit "Update", id: "submit_button" %></div>
           <% end %>
 
-          <div><%= f.label :password %><br/>
-          <span class="form_note">*leave blank if you don't want to change it</span><br />
-            <%= f.password_field :password, autocomplete: "off" %></div>
+        </div>
+      </div>
 
-          <div><%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-          <div><%= f.label :current_password %><br/>
-          <span class="form_note">*we need your current password to confirm your changes</span><br />
-            <%= f.password_field :current_password, autocomplete: "off" %></div>
-
-          <div><%= f.submit "Update", id: "submit_button" %></div>
+      <!-- <div id="user_donation_record_wrapper"> -->
+        <% if can? :manage, Donation %>  
+          
+          <div class="donation_record">
+            <div class="units-row end table_title">Your contributions</div>
+              <div class="donation_row units-row units-mobile-50 end">
+                <div class="date_column unit-60"> Date </div>
+                <div class="amt_column unit-40"> Amount </div>
+              </div>
+          <!-- show all users' contributions -->
+            <% @donation.each do |d| %>
+              <div class="donation_row units-row units-mobile-50 end">
+                <div class="date_column unit-60"> <%= print_date(d.created_at) %> </div>
+                <div class="amt_column unit-40"> <%= print_price(d.amt) %></div>
+              </div>
+            <% end %>
+          
+          </div>
         <% end %>
 
-      </div>
-    </div>
+      <!-- </div> -->
+  </div>
 
-    <!-- <div id="user_donation_record_wrapper"> -->
-      <% if can? :manage, Donation %>  
-        
-        <div class="donation_record">
-          <div class="table_title">Your contributions</div>
-            <div class="donation_row">
-              <div class="date_column"> Date </div>
-              <div class="amt_column"> Amount </div>
-            </div>
-        <!-- show all users' contributions -->
-          <% @donation.each do |d| %>
-            <div class="donation_row">
-              <div class="date_column"> <%= print_date(d.created_at) %> </div>
-              <div class="amt_column"> <%= print_price(d.amt) %></div>
-            </div>
-          <% end %>
-        
-        </div>
-      <% end %>
-
-    <!-- </div> -->
+  <div id="delete_account">
+      <p>Click below to cancel your account.</p>
+      <p><%= button_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, id: "delete_account_button" %></p>
+  </div>
 </div>
 
-<div id="delete_account">
-    <p>Click below to cancel your account.</p>
-    <p><%= button_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, id: "delete_account_button" %></p>
+
+
+
+
+  <div class="push"></div>
+
 </div>
+<footer class="footer">
+<div class="icon_links">
+  <ul>
+  <li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
+  <li><a href="https://www.facebook.com/groups/2200209376/" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></li>
+  <li><a href="http://kplsisters.org" target="_blank"><i class="fa fa-institution fa-2x"></i></a></li>
+  </ul>
+</div>
+
+
+</footer>
