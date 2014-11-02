@@ -81,11 +81,13 @@ class AppsController < ApplicationController
     # authorize! :read, App
   end
 
+  def previewapp
+  end
 
   private
 
   def app_params
-  	params.require(:app).permit(:user_id, :gpa, :current_position, :past_position, :sis_events, :achievement, :semester_active, :semester_inactive, :major, :minor, :credit_count, :academic_probation, :post_grad_goal, :position_accomplishment,   :org_improvement, :com_service_planning, :cv)
+  	params.require(:app).permit(:user_id, :gpa, :current_position, :past_position, :sis_events, :achievement, :semester_active, :semester_inactive, :major, :minor, :credit_count, :academic_probation, :post_grad_goal, :position_accomplishment, :sis_event_planning, :org_improvement, :com_service_attended, :com_service_planning, :other_org_membership, :workshop_attended, :workshop_planning, :cv)
   end
 
 end

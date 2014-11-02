@@ -92,7 +92,34 @@
 		</div>
 
 		<div class="app_section_title">service</div>
+
+		<div class="for_textarea">
+			<%= f.label :com_service_attended, "List community service events attended for previous and current semesters.", class: "long_q" %>
+			<%= f.text_area :com_service_attended %>
+		</div>
+
+		<div class="for_textarea">
+			<%= f.label :com_service_planning, "If applicable, describe your involvement in the planning of any community service events.", class: "long_q" %>
+			<%= f.text_area :com_service_planning %>
+		</div>
+
+		<div class="for_textarea">
+			<%= f.label :other_org_membership, "List your membership and, if applicable, leadership positions in other organizations.", class: "long_q" %>
+			<%= f.text_area :other_org_membership %>
+		</div>
+
 		<div class="app_section_title">cultural diversity</div>
+
+		<div class="for_textarea">
+			<%= f.label :workshop_attended, "List workshops attended previous and current semester (hosted by KPL and/or other organizations.", class: "long_q" %>
+			<%= f.text_area :workshop_attended%>
+		</div>
+
+		<div class="for_textarea">
+			<%= f.label :workshop_planning, "If applicable, describe your involvement in the planning of any workshops.", class: "long_q" %>
+			<%= f.text_area :workshop_planning %>
+		</div>
+
 		<div class="app_section_title">supporting documents</div>
 
 		<div class="for_textarea">

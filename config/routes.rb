@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'apps/review' => 'apps#review' 
   get 'users/chair' => 'users#chair'
   get 'apps/archive' => "apps#archive"
+  get 'previewapp' => "apps#previewapp"
 
   post 'castvote' => 'apps#castvote'
   post 'receive_donation' => 'users#receive_donation'
