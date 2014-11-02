@@ -109,9 +109,9 @@ class UsersController < ApplicationController
       users.each do |u|
         u.update(role: nil, has_voted: false)
       end
-      redirect_to users_chair_path
+      redirect_to root_path
     else
-      redirect_to users_chair_path, alert: "There was a problem declaring an award winner."  
+      redirect_to root_path, alert: "There was a problem declaring an award winner."  
     end
   end
 
@@ -136,15 +136,15 @@ class UsersController < ApplicationController
     message = { 
     :subject=> subject, 
     # change to use the email from the user.role = Chair
-    :from_name=> "Name",
-    :from_email=>"from@me.com",
+    :from_name=> "Phoenix Scholarship",
+    :from_email=>"phoenixscholarship@gmail.com",
     :to=>User.to_mandrill_to(recipient), 
     :html=>"<html><body style='font-family:Arial;font-size:20px'> #{msg}</html>", 
     # :merge_vars => User.to_mandrill_merge_vars(User.active),
     :preserve_recipients => false
     } 
     sending = m.messages.send message
-    redirect_to users_chair_path, notice: "email sent"
+    redirect_to root_path, notice: "email sent"
   end
 
 
